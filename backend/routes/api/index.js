@@ -7,6 +7,11 @@ router.use("/users", usersRouter);
 
 /*--------------------------------------------------------------------*/
 // TEST ROUTES FOR USER AUTH
+
+// router.post("/test", function (req, res) {
+//   res.json({ requestBody: req.body });
+// });
+
 // router.get(
 //   "/set-token-cookie",
 //   asyncHandler(async (req, res) => {
