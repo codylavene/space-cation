@@ -1,5 +1,5 @@
 "use strict";
-const Validator = require("sequelize");
+const { Validator } = require("sequelize");
 const bcrypt = require("bcryptjs");
 // const phoneValidationRegex = /\d{3}-\d{3}-\d{4}/;
 module.exports = (sequelize, DataTypes) => {
