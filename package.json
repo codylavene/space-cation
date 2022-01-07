@@ -14,13 +14,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codylavene/soloReactApp.git"
+    "url": "git+https://github.com/codylavene/space-cation.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/codylavene/soloReactApp/issues"
+    "url": "https://github.com/codylavene/space-cation/issues"
   },
-  "homepage": "https://github.com/codylavene/soloReactApp#readme"
+  "homepage": "https://github.com/codylavene/space-cation#readme"
 }
