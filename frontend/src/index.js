@@ -7,6 +7,7 @@ import App from "./App";
 import configureStore from "./store";
 import { csrfFetch, restoreCSRF } from "./store/csrf";
 import * as sessionActions from "./store/session";
+import { ModalProvider } from "./context/Modal";
 
 const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
@@ -19,9 +20,11 @@ if (process.env.NODE_ENV !== "production") {
 const Root = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ModalProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ModalProvider>
     </Provider>
   );
 };
