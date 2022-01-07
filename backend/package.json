@@ -40,8 +40,7 @@
     "per-env": "^1.0.2",
     "pg": "^8.7.1",
     "sequelize": "^5.22.5",
-    "sequelize-cli": "^5.5.1",
-    "start": "^5.1.0"
+    "sequelize-cli": "^5.5.1"
   },
   "devDependencies": {
     "dotenv-cli": "^4.1.1",
