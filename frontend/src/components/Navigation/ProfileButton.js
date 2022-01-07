@@ -34,6 +34,7 @@ const ProfileButton = ({ user }) => {
         <Link to={`users/${user.id}/messages`}>Messages</Link>
         <Link to={`users/${user.id}/trips`}>Trips</Link>
         <Link to={`users/${user.id}`}>Account</Link>
+        <button onClick={logout}>Logout</button>
       </>
     );
   } else {
@@ -50,9 +51,15 @@ const ProfileButton = ({ user }) => {
       <button onClick={openMenu}>
         <i className="fas fa-user-circle"></i>
       </button>
-      <div className="menu-modal">{showMenu && sessionLinks}</div>
+      {showMenu && sessionLinks}
     </>
   );
 };
 
 export default ProfileButton;
+/*------------------------------------------------------------------------------------\
+npx dotenv sequelize model:generate --name Spot --attributes
+type:string,address:string,pets:boolean,totalOccupancy:integer,totalBedrooms:integer,
+totalBathrooms:integer,description:text,hasWifi:boolean,hasTV:boolean,hasAC:boolean,
+hasHeat:boolean,price:integer,postedAt:timestamp,latitude:float,longitude:float,hostId:integer
+\------------------------------------------------------------------------------------*/

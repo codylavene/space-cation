@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Modal } from "../../context/Modal";
-import LoginForm from "../LoginForm";
+import LoginForm from "./LoginFormModal.js";
 
-const LoginModal = () => {
+function LoginFormModal() {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <Link to="/" onClick={() => setShowModal(true)}>
-        log in
-      </Link>
+      <button onClick={() => setShowModal(true)}>Log In</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <LoginForm />
@@ -18,6 +16,6 @@ const LoginModal = () => {
       )}
     </>
   );
-};
+}
 
-export default LoginModal;
+export default LoginFormModal;
