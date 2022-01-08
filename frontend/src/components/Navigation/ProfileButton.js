@@ -75,9 +75,3 @@ const ProfileButton = ({ user }) => {
 };
 
 export default ProfileButton;
-/*------------------------------------------------------------------------------------\
-npx dotenv sequelize model:generate --name Spot --attributes
-type:string,address:string,pets:boolean,totalOccupancy:integer,totalBedrooms:integer,
-totalBathrooms:integer,description:text,hasWifi:boolean,hasTV:boolean,hasAC:boolean,
-hasHeat:boolean,price:integer,postedAt:timestamp,latitude:float,longitude:float,hostId:integer
-\------------------------------------------------------------------------------------*/
