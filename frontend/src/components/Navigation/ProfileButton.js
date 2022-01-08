@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import LoginModal from "../LoginModal";
+import { useModal } from "../../context/Modal";
 
 const ProfileButton = ({ user }) => {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const { value, setValue } = useModal();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -18,23 +20,38 @@ const ProfileButton = ({ user }) => {
     const closeMenu = () => {
       setShowMenu(false);
     };
-    document.addEventListener("click", closeMenu);
+    // console.log({ value });
+    // document.addEventListener("click", closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+    // return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu, value]);
 
   const logout = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     dispatch(sessionActions.logout());
+    // return <Redirect to="/" />;
   };
   let sessionLinks;
   if (user) {
     sessionLinks = (
       <>
-        <Link to={`users/${user.id}/messages`}>Messages</Link>
-        <Link to={`users/${user.id}/trips`}>Trips</Link>
-        <Link to={`users/${user.id}`}>Account</Link>
-        <button onClick={logout}>Logout</button>
+        <span>
+          Welcome,
+          <br />
+          {user.username}
+        </span>
+        <Link exact="true" to={`/users/${user.id}/messages`}>
+          Messages
+        </Link>
+        <Link exact="true" to={`/users/${user.id}/trips`}>
+          Trips
+        </Link>
+        <Link exact="true" to={`/users/${user.id}`}>
+          Account
+        </Link>
+        <Link to="/" className="account-btn" onClick={logout}>
+          Logout
+        </Link>
       </>
     );
   } else {
@@ -48,10 +65,11 @@ const ProfileButton = ({ user }) => {
   }
   return (
     <>
-      <button onClick={openMenu}>
+      {/* <button onClick={openMenu}>
+        <i className="fas fa-bars" style={{ fontSize: 14 }}></i>
         <i className="fas fa-user-circle"></i>
-      </button>
-      {showMenu && sessionLinks}
+      </button> */}
+      {sessionLinks}
     </>
   );
 };

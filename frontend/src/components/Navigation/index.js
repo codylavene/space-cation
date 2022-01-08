@@ -18,7 +18,7 @@
 // };
 
 // export default Navigation;
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
@@ -27,7 +27,6 @@ import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
-
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = <ProfileButton user={sessionUser} />;
@@ -43,12 +42,14 @@ function Navigation({ isLoaded }) {
 
   return (
     <nav>
-      <NavLink exact to="/">
+      <NavLink exact to="/" className="logo">
         Home
       </NavLink>
-      <NavLink to="/places">Places to stay</NavLink>
-      <NavLink to="/experiences">Experiences</NavLink>
-      <NavLink to="/host-signup">Become a Host</NavLink>
+      <div className="main-links">
+        <NavLink to="/places">Places to stay</NavLink>
+        <NavLink to="/experiences">Experiences</NavLink>
+        <NavLink to="/host-signup">Become a Host</NavLink>
+      </div>
       {isLoaded && sessionLinks}
     </nav>
   );

@@ -7,18 +7,28 @@ function LoginForm() {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [demo, setDemo] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      }
-    );
+    if (demo) {
+      return handleDemo(e);
+    } else
+      return dispatch(sessionActions.login({ credential, password })).catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        }
+      );
   };
-
+  const handleDemo = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    // setCredential("demo-user");
+    // setPassword("password");
+    return dispatch(sessionActions.login({ credential, password }));
+  };
   return (
     <form onSubmit={handleSubmit}>
       <ul>
@@ -45,6 +55,16 @@ function LoginForm() {
         />
       </label>
       <button type="submit">Log In</button>
+      <button
+        type="submit"
+        onClick={() => {
+          setCredential("demo-user");
+          setPassword("password");
+          return handleSubmit;
+        }}
+      >
+        Demo Login
+      </button>
     </form>
   );
 }

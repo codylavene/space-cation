@@ -18,8 +18,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <h1>Test from app</h1>
-            <h2>Please WORK</h2>
+            <h1>TODO: </h1>
           </Route>
           <Route path="/signup">
             <SignupFormPage />

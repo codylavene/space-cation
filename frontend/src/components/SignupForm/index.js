@@ -35,7 +35,7 @@ const SignupForm = () => {
   //   }
   // }, [password, confirmPassword, errors]);
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} style={{ marginTop: 400 }}>
       <ul className="errors">
         {errors.length > 0 && errors.map((err) => <li key={err}>{err}</li>)}
       </ul>
