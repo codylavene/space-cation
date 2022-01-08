@@ -1,0 +1,69 @@
+.login-modal {
+  height: 400px;
+  width: 570px;
+  border-radius: 10px;
+}
+.header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(235, 235, 235);
+}
+
+.fa-times {
+  color: #717171;
+  margin: 30px;
+}
+
+.header > span {
+  position: relative;
+  left: 35%;
+  font-weight: 700;
+}
+
+.login-modal > form {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.inputs {
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+.inputs > input {
+  width: 520px;
+  height: 50px;
+  border: none;
+  padding: 10px;
+  font-size: 15px;
+}
+.inputs > input:focus {
+  outline: none;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+.credential {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom: 1px solid rgb(190, 190, 190);
+}
+
+.inputs > .password {
+  border-top: 1px solid rgb(190, 190, 190);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+form button {
+  margin: 40px;
+  width: 520px;
+  height: 50px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  color: white;
+  background-color: rgb(76, 63, 145);
+}

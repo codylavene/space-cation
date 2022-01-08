@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-
+import "./LoginFormModal.css";
 function LoginForm() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
@@ -30,42 +30,48 @@ function LoginForm() {
     return dispatch(sessionActions.login({ credential, password }));
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Username or Email
-        <input
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Log In</button>
-      <button
-        type="submit"
-        onClick={() => {
-          setCredential("demo-user");
-          setPassword("password");
-          return handleSubmit;
-        }}
-      >
-        Demo Login
-      </button>
-    </form>
+    <div className="login-modal">
+      <div className="header">
+        <i className="fas fa-times"></i>
+        <span>Log In</span>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        <div className="inputs">
+          <input
+            type="text"
+            className="credential"
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
+            placeholder="Username or Email"
+            required
+          />
+          <input
+            className="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+          />
+        </div>
+        <button type="submit">Log In</button>
+        <button
+          type="submit"
+          onClick={() => {
+            setCredential("demo-user");
+            setPassword("password");
+            return handleSubmit;
+          }}
+        >
+          Demo Login
+        </button>
+      </form>
+    </div>
   );
 }
 

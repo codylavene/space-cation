@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupForm";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import SpotCard from "./components/SpotsCard";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/places">
+            <SpotCard />
           </Route>
         </Switch>
       )}
