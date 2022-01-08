@@ -1,7 +1,7 @@
 # Welcome to SpaceCation
 ## An airbnb clone with a focus on the future of extraterrestrial vacations.
 ---
-### Full-Stack app with React, Express, Node.js, and PostgreSQL(using sequelize)
+### Full-Stack app with React, Redux, Express, Node.js, and PostgreSQL(using sequelize)
 [Live Link](https://space-cation.herokuapp.com)
 ---
 #### To run Locally:
