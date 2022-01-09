@@ -1,0 +1,21 @@
+.footer {
+  position: absolute;
+  bottom: 0px;
+  height: 100px;
+  width: 100%;
+  border-top: 1px solid rgb(190, 190, 190);
+  background-color: #4a0b5c;
+  color: white;
+  font-weight: 300;
+}
+.techs {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 100px;
+  padding: 10px;
+  border-bottom: 1px solid rgb(190, 190, 190);
+}
+.my-details {
+  margin: 10px auto;
+  text-align: center;
+}

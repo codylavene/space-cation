@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import LoginModal from "../LoginModal";
 import { useModal } from "../../context/Modal";
+import SignupModal from "../SignupModal";
 
 const ProfileButton = ({ user }) => {
   const dispatch = useDispatch();
@@ -57,9 +58,11 @@ const ProfileButton = ({ user }) => {
   } else {
     sessionLinks = (
       <>
-        <LoginModal />
-        <Link to="/signup">Sign Up</Link>
-        <Link to="/become-a-host">Host Your Home</Link>
+        <div className="nav-btn">
+          <LoginModal />
+          <SignupModal />
+        </div>
+        {/* <Link to="/become-a-host">Host Your Home</Link> */}
       </>
     );
   }

@@ -1,4 +1,4 @@
-.login-modal {
+.signup-modal {
   height: fit-content;
   width: 570px;
   border-radius: 10px;
@@ -21,40 +21,41 @@
   font-weight: 700;
 }
 
-.login-modal > form {
+.signup-modal > form {
   padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.inputs {
+.signup-inputs {
   border: 1px solid rgb(190, 190, 190);
   border-radius: 8px;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 40px;
 }
-.inputs > input {
+.signup-inputs input {
   width: 520px;
   height: 50px;
-  border: none;
+  border-width: 0;
+  border-bottom: 1px solid rgb(190, 190, 190);
   padding: 10px;
   font-size: 15px;
 }
-.inputs > input:focus {
+.signup-inputs > input:focus {
   outline: none;
   border: 1px solid black;
   border-radius: 8px;
 }
-.credential {
+.top-input {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  border-bottom: 1px solid rgb(190, 190, 190);
+  /* border-bottom: 1px solid rgb(190, 190, 190); */
 }
-
-.inputs > .password {
-  border-top: 1px solid rgb(190, 190, 190);
+.bottom-input {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  border-bottom: none !important;
+  border-width: 0;
 }
 
 form button {

@@ -1,10 +1,11 @@
 const router = require("express").Router();
+const spotsRouter = require("./spots");
 const sessionRouter = require("./session");
 const usersRouter = require("./users");
 /*--------------------------------------------------------------------*/
 router.use("/session", sessionRouter);
 router.use("/users", usersRouter);
-
+router.use("/spots", spotsRouter);
 /*--------------------------------------------------------------------*/
 // TEST ROUTES FOR USER AUTH
 

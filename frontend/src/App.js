@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupForm";
+// import SignupFormPage from "./components/SignupForm";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotCard from "./components/SpotsCard";
+import Footer from "./components/Footer";
+import Spots from "./components/Pages/Spots";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,14 +23,15 @@ function App() {
           <Route exact path="/">
             <h1>TODO: </h1>
           </Route>
-          <Route path="/signup">
+          {/* <Route path="/signup">
             <SignupFormPage />
-          </Route>
+          </Route> */}
           <Route path="/places">
-            <SpotCard />
+            <Spots isLoaded={isLoaded} />
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

@@ -1,26 +1,27 @@
 nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-items: flex-start;
   padding-top: 33px;
   font-size: 14px;
-  /* position: fixed;
+  position: fixed;
   top: 0;
   right: 0;
-  left: 0; */
-  /* height: 175px;
-  background-color: black; */
+  left: 0;
+  height: 175px;
+  background-color: #000;
 }
 .main-links {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 55%;
+
+  width: 400px;
 }
 nav > a,
 .main-links > a {
-  /* color: white; */
+  color: white;
   text-decoration: none;
   padding: 5px;
 }
@@ -28,10 +29,26 @@ nav > .logo {
   margin-right: 120px;
   margin-left: 20px;
 }
-.account-btn {
-  /* background-color: black; */
-  /* color: white; */
-  font-size: 14px;
+.nav-btn {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(190, 190, 190);
+  border-radius: 40px;
+  height: 45px;
+  width: 160px;
+  margin-top: -10px;
+  margin-right: 10px;
+}
+.nav-btn > button {
+  height: 45px;
+  width: 80px;
+  border-radius: 40px;
+  background-color: rgb(190, 190, 190);
+  border: none;
+}
+.nav-btn > button:hover {
+  background-color: rgb(235, 235, 235);
+  box-shadow: rgb(0 0 0 / 15%) 0px 16px 32px, rgb(0 0 0 / 10%) 0px 3px 8px !important;
 }
 .active {
   padding: 5px;
@@ -42,10 +59,52 @@ nav > button {
   height: 45px;
   margin-top: -10px;
   width: 80px;
+
   border-radius: 40px;
   font-size: 28px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   border: black;
+}
+
+.search {
+  position: relative;
+  top: 80px;
+  left: 13%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  width: 700px;
+  height: 64px;
+  border-radius: 40px;
+  background-color: #fff;
+}
+.search > input {
+  width: 600px;
+  height: 64px;
+  border-radius: 40px;
+  border: none;
+  font-size: 18px;
+  margin-left: 16px;
+}
+.search > input:focus {
+  outline: none;
+  border: none;
+}
+
+.search-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 100px;
+  background-color: rgb(76, 63, 145);
+}
+
+.search-icon:hover {
+  background-color: rgb(76, 63, 145);
 }
