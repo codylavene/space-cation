@@ -7,6 +7,8 @@ import Navigation from "./components/Navigation";
 import SpotCard from "./components/SpotsCard";
 import Footer from "./components/Footer";
 import Spots from "./components/Pages/Spots";
+import SingleSpot from "./components/Pages/SingleSpot";
+import Landing from "./components/Pages/Landing";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,13 +23,13 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <h1>TODO: </h1>
+            <Landing />
           </Route>
-          {/* <Route path="/signup">
-            <SignupFormPage />
-          </Route> */}
           <Route path="/places">
             <Spots isLoaded={isLoaded} />
+          </Route>
+          <Route path="/places/:id">
+            <SingleSpot />
           </Route>
         </Switch>
       )}

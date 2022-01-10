@@ -1,58 +1,41 @@
 import { csrfFetch } from "./csrf";
+/*--------------------------------------------------------------------*/
+// ACTIONS
 const SET_SPOT = "spots/setSpot";
-const REMOVE_SPOT = "spots/removeSpot";
 const LOAD_SPOTS = "spots/loadSpots";
-// const setSpot = (user) => {
-//   return {
-//     type: SET_SPOT,
-//     user,
-//   };
-// };
-const removeSpot = () => {
+/*--------------------------------------------------------------------*/
+// ACTION CREATORS
+const setSpot = (currSpot) => {
   return {
-    type: REMOVE_SPOT,
+    type: SET_SPOT,
+    currSpot,
   };
 };
+
 const loadSpots = (entries) => {
   return {
     type: LOAD_SPOTS,
     entries,
   };
 };
-
+/*--------------------------------------------------------------------*/
+// FETCH UTIL FUNCTIONS
 export const getAllSpots = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots");
   const data = await res.json();
-  console.log({ data });
   dispatch(loadSpots(data));
   // return res;
 };
 
-// export const signup = (user) => async (dispatch) => {
-//   const { name, username, email, password } = user;
-//   const res = await csrfFetch("/api/users", {
-//     method: "POST",
-//     body: JSON.stringify({ name, username, email, password }),
-//   });
-//   const data = await res.json();
-//   // dispatch(setUser(data.user));
-//   return res;
-// };
-// export const restoreUser = () => async (dispatch) => {
-//   const res = await csrfFetch("/api/session");
-//   const data = await res.json();
-//   // dispatch(setUser(data.user));
-//   return res;
-// };
-
-// export const logout = () => async (dispatch) => {
-//   const res = await csrfFetch("/api/session", {
-//     method: "DELETE",
-//   });
-//   // dispatch(removeUser());
-//   return res;
-// };
-const initialState = { entries: [], isLoading: true };
+export const getOneSpot = (id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${id}`);
+  const data = await res.json();
+  console.log({ data });
+  dispatch(setSpot(data));
+};
+/*--------------------------------------------------------------------*/
+// SPOTS REDUCER
+const initialState = { entries: [], currSpot: null, isLoading: true };
 
 const spotsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -64,15 +47,14 @@ const spotsReducer = (state = initialState, action) => {
       }, {});
       return newState;
     }
-    // case REMOVE_USER: {
-    //   const newState = Object.assign({}, state);
-    //   newState.user = null;
-    //   return newState;
-    // }
-
+    case SET_SPOT: {
+      const newState = { ...state };
+      newState.currSpot = action.currSpot;
+      return newState;
+    }
     default:
       return state;
   }
 };
-
+/*--------------------------------------------------------------------*/
 export default spotsReducer;

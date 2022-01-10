@@ -2,7 +2,8 @@ import React from "react";
 
 const SpotDetails = ({ spot }) => {
   const {
-    address,
+    name,
+    title,
     hasAC,
     hasWifi,
     hasTV,
@@ -13,7 +14,6 @@ const SpotDetails = ({ spot }) => {
     totalOccupancy,
     type,
   } = spot;
-  console.log(spot);
   const findAmenities = (hasAC, hasWifi, hasTV, pets) => {
     const amenities = [];
     amenities.push(hasAC ? "AC" : "");
@@ -30,7 +30,8 @@ const SpotDetails = ({ spot }) => {
   return (
     <>
       <div className="type">{type}</div>
-      <div className="name">{address}</div>{" "}
+      <div className="title">{title}</div>
+      <div className="name">{name}</div>{" "}
       {/*change address to name in database*/}
       <span
         className="line"

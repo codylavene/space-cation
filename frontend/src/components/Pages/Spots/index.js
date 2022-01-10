@@ -7,7 +7,6 @@ const Spots = ({ isLoaded }) => {
 
   const spotsObj = useSelector((state) => state.spots.entries);
   const spots = Object.values(spotsObj);
-  // const [spots, setSpots] = useState([]);
 
   useEffect(() => {
     dispatch(spotActions.getAllSpots());

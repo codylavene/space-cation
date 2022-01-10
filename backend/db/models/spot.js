@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     "Spot",
     {
       type: DataTypes.STRING,
-      address: DataTypes.STRING,
+      name: DataTypes.STRING,
+      title: DataTypes.STRING,
       pets: DataTypes.BOOLEAN,
       totalOccupancy: DataTypes.INTEGER,
       totalBedrooms: DataTypes.INTEGER,
@@ -16,8 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       hasHeat: DataTypes.BOOLEAN,
       price: DataTypes.INTEGER,
       postedAt: DataTypes.DATE,
-      latitude: DataTypes.FLOAT(8, 6),
-      longitude: DataTypes.FLOAT(9, 6),
+      coordinates: DataTypes.STRING,
       hostId: DataTypes.INTEGER,
     },
     {}

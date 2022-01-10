@@ -12,7 +12,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      address: {
+      name: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      title: {
         allowNull: false,
         type: Sequelize.STRING,
       },
@@ -65,13 +69,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      latitude: {
+      coordinates: {
         allowNull: false,
-        type: Sequelize.FLOAT(8, 6),
-      },
-      longitude: {
-        allowNull: false,
-        type: Sequelize.FLOAT(9, 6),
+        type: Sequelize.STRING,
       },
       hostId: {
         allowNull: false,
