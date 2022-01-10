@@ -18,7 +18,6 @@ export function ModalProvider({ children }) {
     setValue(modalRef.current);
   }, []);
 
-  console.log(value);
   return (
     <>
       <ModalContext.Provider value={value}>{children}</ModalContext.Provider>,

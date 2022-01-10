@@ -1,8 +1,7 @@
 import React from "react";
 
 const SpotImage = ({ image }) => {
-  console.log(image);
-  return <div>Content</div>;
+  return <img src={image}></img>;
 };
 
 export default SpotImage;

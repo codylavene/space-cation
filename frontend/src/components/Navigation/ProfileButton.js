@@ -36,7 +36,7 @@ const ProfileButton = ({ user }) => {
   if (user) {
     sessionLinks = (
       <>
-        <span>
+        <span style={{ color: "white" }}>
           Welcome,
           <br />
           {user.username}

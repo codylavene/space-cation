@@ -11,6 +11,7 @@ nav {
   left: 0;
   height: 175px;
   background-color: #000;
+  z-index: 1;
 }
 .main-links {
   display: flex;
@@ -69,7 +70,7 @@ nav > button {
 }
 
 .search {
-  position: relative;
+  position: fixed;
   top: 80px;
   left: 13%;
   display: flex;
@@ -80,6 +81,7 @@ nav > button {
   height: 64px;
   border-radius: 40px;
   background-color: #fff;
+  z-index: 2;
 }
 .search > input {
   width: 600px;

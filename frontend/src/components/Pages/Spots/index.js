@@ -1,19 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as spotActions from "../../../store/spots";
 import SpotCard from "../../SpotsCard";
 const Spots = ({ isLoaded }) => {
-  // const spots = useSelector((state) => state.spots);
   const dispatch = useDispatch();
-  const getSpots = async () => {
-    const spots = await dispatch(spotActions.getAllSpots());
-    return await spots;
-  };
-  const spots = getSpots();
-  console.log("spots in spots page", spots);
+
+  const spotsObj = useSelector((state) => state.spots.entries);
+  const spots = Object.values(spotsObj);
+  // const [spots, setSpots] = useState([]);
+
+  useEffect(() => {
+    dispatch(spotActions.getAllSpots());
+  }, [dispatch]);
   return (
-    <div>
-      {spots.length > 0 && spots.Map((spot) => <SpotCard spot={spot} />)}
+    <div className="spots-container">
+      {spots.length > 0 &&
+        spots.map((spot) => <SpotCard spot={spot} key={spot.id} />)}
     </div>
   );
 };
