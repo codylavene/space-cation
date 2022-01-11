@@ -7,7 +7,9 @@ const { Spot, Image, Review, Reservation, User } = require("../../db/models");
 router.get(
   "/:id",
   asyncHandler(async (req, res) => {
-    const spot = await Spot.findByPk(req.params.id);
+    const spot = await Spot.findByPk(req.params.id, {
+      include: [Image, Review, Reservation, User],
+    });
     if (spot) {
       return res.json(spot);
     }
@@ -19,10 +21,10 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const spots = await Spot.findAll({
-      include: Image,
-      // TODO: include all associations
+      include: [Image, Review, User, Reservation],
     });
-    console.log("Spots in API", [spots[0].dataValues]);
+
+    console.log("Spots in API", JSON.stringify(spots, null, 4));
     return res.json(spots);
   })
 );

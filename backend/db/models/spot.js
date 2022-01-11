@@ -29,5 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     Spot.hasMany(models.Reservation, { foreignKey: "spotId" });
     Spot.hasMany(models.Image, { foreignKey: "spotId" });
   };
+
   return Spot;
 };

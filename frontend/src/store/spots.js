@@ -23,19 +23,21 @@ const loadSpots = (entries) => {
 export const getAllSpots = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots");
   const data = await res.json();
+  // console.log(JSON.stringify(data, null, 4));
   dispatch(loadSpots(data));
   // return res;
 };
 
 export const getOneSpot = (id) => async (dispatch) => {
+  // console.log("ID in GETONESPOT", id);
   const res = await csrfFetch(`/api/spots/${id}`);
   const data = await res.json();
-  console.log({ data });
+  // console.log({ data });
   dispatch(setSpot(data));
 };
 /*--------------------------------------------------------------------*/
 // SPOTS REDUCER
-const initialState = { entries: [], currSpot: null, isLoading: true };
+const initialState = { entries: [], currSpot: null };
 
 const spotsReducer = (state = initialState, action) => {
   switch (action.type) {

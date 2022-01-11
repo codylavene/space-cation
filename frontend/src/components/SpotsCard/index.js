@@ -5,10 +5,7 @@ import "./SpotCard.css";
 import SpotImage from "./SpotImage";
 import SpotDetails from "./SpotDetails";
 const SpotCard = ({ spot }) => {
-  const { id } = useParams();
-  if (id) {
-    console.log(spot);
-  }
+  console.log(spot.Images);
   return (
     <div className="spot-card">
       <Link to={`/places/${spot?.id}`}>

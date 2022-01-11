@@ -25,11 +25,11 @@ function App() {
           <Route exact path="/">
             <Landing />
           </Route>
-          <Route path="/places">
-            <Spots isLoaded={isLoaded} />
-          </Route>
           <Route path="/places/:id">
             <SingleSpot />
+          </Route>
+          <Route path="/places">
+            <Spots isLoaded={isLoaded} />
           </Route>
         </Switch>
       )}
