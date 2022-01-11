@@ -49,5 +49,8 @@
   position: relative;
   top: 35px;
 }
-
+.name {
+  font-size: 22px;
+  font-weight: 400;
+}
 /*  */

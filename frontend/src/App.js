@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Spots from "./components/Pages/Spots";
 import SingleSpot from "./components/Pages/SingleSpot";
 import Landing from "./components/Pages/Landing";
+import Account from "./components/Account";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/places">
             <Spots isLoaded={isLoaded} />
+          </Route>
+          <Route path="/users/:id">
+            <Account isLoaded={isLoaded} />
           </Route>
         </Switch>
       )}

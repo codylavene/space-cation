@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const SpotDetails = ({ spot }) => {
+  const [rating, setRating] = useState(0);
   const {
     name,
     title,
@@ -13,7 +14,23 @@ const SpotDetails = ({ spot }) => {
     totalBathrooms,
     totalOccupancy,
     type,
+    Reviews,
+    User,
   } = spot;
+  useEffect(() => {
+    const getAvgRating = (reviews) => {
+      const ratings = reviews.map((review) => review.rating);
+      if (ratings.length > 0) {
+        const avg = ratings.reduce((total, rating) => total + rating);
+        return avg;
+      } else return 0;
+    };
+    if (Reviews.length) {
+      setRating(getAvgRating(Reviews));
+      console.log(rating);
+    }
+  }, [spot, Reviews, rating]);
+
   const findAmenities = (hasAC, hasWifi, hasTV, pets) => {
     const amenities = [];
     amenities.push(hasAC ? "AC" : "");
@@ -46,7 +63,10 @@ const SpotDetails = ({ spot }) => {
       </div>
       <div className="rating">
         <i className="fas fa-star"></i>
-        <span> 5.0 (1 review)</span>
+        <span>
+          {" "}
+          {rating.toFixed(2)} ({`${Reviews.length} review(s)`})
+        </span>
       </div>
       <div className="price">
         <span style={{ fontWeight: 800 }}>

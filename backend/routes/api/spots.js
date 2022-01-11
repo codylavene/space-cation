@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
+const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
 const { Spot, Image, Review, Reservation, User } = require("../../db/models");
 /*--------------------------------------------------------------------*/
 // GET SINGLE SPOT
@@ -31,10 +32,61 @@ router.get(
 // CREATE NEW SPOT
 router.post(
   "/",
+  singleMulterUpload("image"),
   asyncHandler(async (req, res) => {
     console.log(req.body);
-    // TODO: Creating new Spot
-    return;
+    const {
+      type,
+      name,
+      title,
+      pets,
+      totalOccupancy,
+      totalBedrooms,
+      totalBathrooms,
+      description,
+      hasWifi,
+      hasTV,
+      hasAC,
+      hasHeat,
+      price,
+      postedAt,
+      coordinates,
+      hostId,
+    } = req.body;
+    // const { spot } = req.body;
+    const newSpot = {
+      type,
+      name,
+      title,
+      pets,
+      totalOccupancy,
+      totalBedrooms,
+      totalBathrooms,
+      description,
+      hasWifi,
+      hasTV,
+      hasAC,
+      hasHeat,
+      price,
+      postedAt,
+      coordinates,
+      hostId,
+    };
+    const createdSpot = await Spot.create(newSpot);
+    if (createdSpot) {
+      // console.log(req.file);
+      // const { image } = req.file;
+      console.log("+++++++++++++++++", req.file);
+      console.log("=================", req.files);
+      const imageUrl = await singlePublicFileUpload(req.file);
+      const newImage = await Image.create({
+        url: imageUrl,
+        spotId: createdSpot.id,
+      });
+      return res.json({ createdSpot, newImage });
+    } else {
+      return res.json({ message: "Failed" });
+    }
   })
 );
 // UPDATE SPOT
