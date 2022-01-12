@@ -9,7 +9,7 @@ const SpotCard = ({ spot }) => {
   return (
     <div className="spot-card">
       <Link to={`/places/${spot?.id}`}>
-        <SpotImage image={spot?.Images[0].url} />
+        <SpotImage image={spot?.Images[0]?.url} />
         <div className="info">
           <SpotDetails spot={spot} />
         </div>

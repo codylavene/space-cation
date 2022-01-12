@@ -7,21 +7,18 @@ module.exports = {
       [
         {
           url: "https://space-cation-images.s3.us-east-2.amazonaws.com/spot1/1641914067684.jpeg",
-          // url: "https://static.toiimg.com/photo/81386864.cms",
           spotId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           url: "https://space-cation-images.s3.us-east-2.amazonaws.com/spot1/1641914107029.jpg",
-          // url: "https://nypost.com/wp-content/uploads/sites/2/2021/03/voyager-station-3.jpeg?quality=90&strip=all&w=1024",
           spotId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           url: "https://space-cation-images.s3.us-east-2.amazonaws.com/spot1/1641914125865.jpeg",
-          // url: "https://cdn4.dogonews.com/images/c01c282d-e95f-4dd3-86c9-65efb6d20e38/ezgif-6-701391eb9fe1.jpeg",
           spotId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
