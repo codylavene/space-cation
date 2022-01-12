@@ -5,6 +5,9 @@ import AddPlaceForm from "./AddPlaceForm";
 import AddPlaceModal from "./AddPlaceModal";
 import BecomeHostForm from "./BecomeHostForm";
 import BecomeHostModal from "./BecomeHostModal";
+import "./AddPlaceForm.css";
+import HostSpots from "../Pages/Spots/HostSpots";
+
 const Account = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [host, setHost] = useState(false);
@@ -18,6 +21,7 @@ const Account = (props) => {
     components = (
       <>
         <AddPlaceModal setShowModal={setShowModal} />
+        <HostSpots />
       </>
     );
   } else {
@@ -30,9 +34,10 @@ const Account = (props) => {
   return (
     <div>
       <div>
-        <h2>Welcome, {sessionUser?.username}</h2>
+        <h2>Account</h2>
+        <h2>{sessionUser?.name}</h2>
+        <h2>{sessionUser?.username}</h2>
         <h3>{sessionUser?.email}</h3>
-        <h3>Welcome, {sessionUser?.name}</h3>
       </div>
       <div>
         {components}

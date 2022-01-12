@@ -4,7 +4,6 @@ import * as spotActions from "../../../store/spots";
 import SpotCard from "../../SpotsCard";
 const Spots = ({ isLoaded }) => {
   const dispatch = useDispatch();
-
   const spotsObj = useSelector((state) => state.spots.entries);
   const spots = Object.values(spotsObj);
 

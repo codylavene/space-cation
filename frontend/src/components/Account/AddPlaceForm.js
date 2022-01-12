@@ -58,7 +58,8 @@ const AddPlaceForm = ({ setShowModal }) => {
         setShowModal(false);
       })
       .catch(async (res) => {
-        const newSpot = await res.json();
+        console.log(res);
+        const data = await res;
         if (data && data.errors) {
           newErrors = data.errors;
           setErrors(newErrors);
@@ -76,19 +77,23 @@ const AddPlaceForm = ({ setShowModal }) => {
     setTotalBedrooms("");
     setTotalBathrooms("");
     setDescription("");
-    setWifi(false);
-    setTV(false);
-    setAC(false);
-    setHeat(false);
+    // setWifi(false);
+    // setTV(false);
+    // setAC(false);
+    // setHeat(false);
     setPrice("");
     setImage("");
     setCoordinates("");
+    resetSelections();
   };
   const resetSelections = () => {
     setWifi(false);
     setTV(false);
     setAC(false);
     setHeat(false);
+    document
+      .querySelectorAll(".selected")
+      .forEach((each) => each.classList.remove("selected"));
   };
 
   const updateFile = (e) => {
@@ -96,26 +101,29 @@ const AddPlaceForm = ({ setShowModal }) => {
     console.log(file);
     if (file) setImage(file);
   };
+  const selectToggle = (e) => {
+    e.target.classList.toggle("selected");
+  };
   return (
     <div className="add-place-modal">
       <div className="header">
         <i className="fas fa-times" onClick={() => setShowModal(false)}></i>
         <span>Add a Place</span>
       </div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="add-place-form">
         <ul className="errors">
           {errors.length > 0 && errors.map((err) => <li key={err}>{err}</li>)}
         </ul>
-        <div className="signup-inputs">
-          <label>
-            Type of Property
-            <select value={type} onChange={(e) => setType(e.target.value)}>
-              <option value="Space Station">Space Station</option>
-              <option value="Satellite">Satellite</option>
-              <option value="Moon">Moon</option>
-              <option value="Mars">Mars</option>
-            </select>
-          </label>
+        <label>
+          Type of Property
+          <select value={type} onChange={(e) => setType(e.target.value)}>
+            <option value="Space Station">Space Station</option>
+            <option value="Satellite">Satellite</option>
+            <option value="Moon">Moon</option>
+            <option value="Mars">Mars</option>
+          </select>
+        </label>
+        <div className="add-place-inputs">
           <input
             className="top-input"
             type="text"
@@ -132,13 +140,6 @@ const AddPlaceForm = ({ setShowModal }) => {
             placeholder="The Main Title to be Displayed"
             // required
           />
-          <label>
-            Pets Allowed?
-            <select value={pets} onChange={(e) => setPets(e.target.value)}>
-              <option value={"true"}>Yes</option>
-              <option value={"false"}>No</option>
-            </select>
-          </label>
 
           <input
             type="number"
@@ -161,12 +162,7 @@ const AddPlaceForm = ({ setShowModal }) => {
             placeholder="How many bathrooms?"
             // required
           />
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Tell us about the property!"
-            // required
-          />
+
           <input
             type="text"
             value={coordinates}
@@ -182,29 +178,77 @@ const AddPlaceForm = ({ setShowModal }) => {
             placeholder="Price per night (format: '123456')"
             // required
           />
-          <div className="amenities-options">
-            Select all that apply:
-            <div className="clear-selections" onClick={resetSelections}>
-              Clear All Selections
-            </div>
-            <div className="amenity" onClick={() => setWifi(true)}>
+        </div>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Tell us about the property!"
+          // required
+        />
+        {/* <label>
+          Pets Allowed?
+          <select value={pets} onChange={(e) => setPets(e.target.value)}>
+            <option value={"true"}>Yes</option>
+            <option value={"false"}>No</option>
+          </select>
+        </label> */}
+        <div className="amenities-options">
+          Select all that apply:
+          <div className="amenities">
+            <div
+              className="amenity"
+              onClick={(e) => {
+                selectToggle(e);
+                setWifi(!hasWifi);
+              }}
+            >
               Wifi
             </div>
-            <div className="amenity" onClick={() => setTV(true)}>
+            <div
+              className="amenity"
+              onClick={(e) => {
+                selectToggle(e);
+                setPets(!pets);
+              }}
+            >
+              Pets Allowed
+            </div>
+            <div
+              className="amenity tv"
+              onClick={(e) => {
+                selectToggle(e);
+                setTV(!hasTV);
+              }}
+            >
               TV
             </div>
-            <div className="amenity" onClick={() => setAC(true)}>
+            <div
+              className="amenity"
+              onClick={(e) => {
+                selectToggle(e);
+                setAC(!hasAC);
+              }}
+            >
               Air Conditioning
             </div>
-            <div className="amenity" onClick={() => setHeat(true)}>
+            <div
+              className="amenity"
+              onClick={(e) => {
+                selectToggle(e);
+                setHeat(!hasHeat);
+              }}
+            >
               Heat
             </div>
           </div>
-          <label>
-            Add an Image!
-            <input type="file" name="image" onChange={updateFile}></input>
-          </label>
+          <div className="clear-selections" onClick={resetSelections}>
+            Clear All Selections
+          </div>
         </div>
+        <label>
+          Add an Image!
+          <input type="file" name="image" onChange={updateFile}></input>
+        </label>
         <button>Host this Place!</button>
       </form>
     </div>

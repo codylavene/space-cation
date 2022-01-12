@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth.js");
-const { User } = require("../../db/models");
+const { Spot, Image, Review, Reservation, User } = require("../../db/models");
 const router = express.Router();
 /*--------------------------------------------------------------------*/
 // MIDDLEWARE
@@ -59,6 +59,18 @@ router.put(
     if (updatedUser) {
       return res.json({ updatedUser });
     }
+  })
+);
+
+router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const spots = await Spot.findAll({
+      where: { hostId: req.params.id },
+      include: [Image, Review, User, Reservation],
+    });
+    console.log(spots);
+    return res.json(spots);
   })
 );
 /*--------------------------------------------------------------------*/

@@ -80,9 +80,17 @@ export const addNewSpot = (newSpot) => async (dispatch) => {
     body: formData,
   });
   const data = await res.json();
-  dispatch(addSpot(data));
+  getHostsSpots(data.hostId);
+  // dispatch(loadSpots(data));
   // getAllSpots()
   return data;
+};
+
+export const getHostsSpots = (user) => async (dispatch) => {
+  const res = await csrfFetch(`/api/users/${user.id}`);
+  const data = await res.json();
+  console.log(data);
+  dispatch(loadSpots(data));
 };
 /*--------------------------------------------------------------------*/
 // SPOTS REDUCER
