@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 
-const AddPlaceForm = (props) => {
+const AddPlaceForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState([]);
   const sessionUser = useSelector((state) => state.session.user);
   const [name, setName] = useState("");

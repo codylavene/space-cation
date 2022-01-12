@@ -43,6 +43,24 @@ router.post(
     return res.json({ user });
   })
 );
+
+router.put(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    // const { isHost } = req.body;
+    console.log("+++++++++++++++++++", req.body);
+    console.log("+++++++++++++++++++", req.params.id);
+    const { id } = req.params;
+    console.log(id);
+    const user = await User.findByPk(parseInt(id, 10));
+    const updatedUser = await user.update({ isHost: req.body.isHost });
+
+    // await setTokenCookie(res, user);
+    if (updatedUser) {
+      return res.json({ updatedUser });
+    }
+  })
+);
 /*--------------------------------------------------------------------*/
 // EXPORTS
 module.exports = router;

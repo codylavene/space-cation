@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
-
+// const UPDATE_USER = "session/updateUser";
 const setUser = (user) => {
   return {
     type: SET_USER,
@@ -13,6 +13,13 @@ const removeUser = () => {
     type: REMOVE_USER,
   };
 };
+
+// const updateUser = (user) => {
+//   return {
+//     type: UPDATE_USER,
+//     user,
+//   };
+// };
 
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -47,6 +54,17 @@ export const logout = () => async (dispatch) => {
     method: "DELETE",
   });
   dispatch(removeUser());
+  return res;
+};
+
+export const updateHostStatus = (user) => async (dispatch) => {
+  const res = await csrfFetch(`/api/users/${user.id}`, {
+    method: "PUT",
+    body: JSON.stringify({ isHost: true }),
+  });
+  const data = await res.json();
+  console.log(data);
+  dispatch(setUser(data.updatedUser));
   return res;
 };
 const initialState = { user: null };
