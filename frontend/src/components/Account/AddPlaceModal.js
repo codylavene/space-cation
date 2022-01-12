@@ -5,7 +5,12 @@ const AddPlaceModal = () => {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Add a Spot?</button>
+      <button
+        className="add-spot-show-modal"
+        onClick={() => setShowModal(true)}
+      >
+        Add a Spot?
+      </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <AddPlaceForm setShowModal={setShowModal} />

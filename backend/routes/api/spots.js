@@ -74,10 +74,6 @@ router.post(
     };
     const createdSpot = await Spot.create(newSpot);
     if (createdSpot) {
-      // console.log(req.file);
-      // const { image } = req.file;
-      console.log("+++++++++++++++++", req.file);
-      console.log("=================", req.files);
       const imageUrl = await singlePublicFileUpload(req.file);
       const newImage = await Image.create({
         url: imageUrl,
@@ -91,19 +87,64 @@ router.post(
 );
 // UPDATE SPOT
 router.put(
-  "/:id(/\\d+/)",
+  "/:id",
   asyncHandler(async (req, res) => {
+    console.log("<><><><><><><><><><><><><>", req.body);
     console.log(req.body);
+    const {
+      type,
+      name,
+      title,
+      pets,
+      totalOccupancy,
+      totalBedrooms,
+      totalBathrooms,
+      description,
+      hasWifi,
+      hasTV,
+      hasAC,
+      hasHeat,
+      price,
+      postedAt,
+      coordinates,
+      hostId,
+    } = req.body;
+    // const { spot } = req.body;
+    const spotToUpdate = {
+      type,
+      name,
+      title,
+      pets,
+      totalOccupancy,
+      totalBedrooms,
+      totalBathrooms,
+      description,
+      hasWifi,
+      hasTV,
+      hasAC,
+      hasHeat,
+      price,
+      postedAt,
+      coordinates,
+      hostId,
+    };
     // TODO: Update Spot
-    return;
+    // const newImage = await Image.findByPk(req.file);
+    const spot = await Spot.findByPk(req.params.id);
+    const updatedSpot = await spot.update(spotToUpdate);
+    // return res.json({ spot });
+    console.log({ updatedSpot });
+    return res.json({ updatedSpot });
   })
 );
 // DELETE SPOT
 router.delete(
   "/:id",
   asyncHandler(async (req, res) => {
-    console.log(req.body);
-    const destoyed = await Spot.destroy();
+    await Image.destroy({ where: { spotId: req.params.id } });
+    await Review.destroy({ where: { spotId: req.params.id } });
+    await Reservation.destroy({ where: { spotId: req.params.id } });
+    const destroyed = await Spot.destroy({ where: { id: req.params.id } });
     if (destroyed) {
       return res.json({ message: "Destroyed" });
     } else {

@@ -5,7 +5,12 @@ const BecomeHostModal = () => {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Become a Host</button>
+      <button
+        className="become-host-modal-show"
+        onClick={() => setShowModal(true)}
+      >
+        Become a Host
+      </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <BecomeHostForm setShowModal={setShowModal} />

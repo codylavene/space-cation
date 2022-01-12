@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
+import "./BecomeHost.css";
+
 const BecomeHostForm = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
@@ -10,9 +12,9 @@ const BecomeHostForm = (props) => {
     dispatch(sessionActions.updateHostStatus(user));
   };
   return (
-    <div>
-      <div>
-        <h3>Click here to register as a host!</h3>
+    <div className="host-activate-container">
+      <div className="host-activate">
+        <div>Click here to register as a host!</div>
         <button onClick={updateUser}>Become a Host</button>
       </div>
     </div>

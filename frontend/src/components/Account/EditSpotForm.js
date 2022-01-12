@@ -1,34 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 
-const AddPlaceForm = ({ setShowModal }) => {
+const EditSpotForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
   // const [showModal, setShowModal] = useState(false);
+  const currSpot = useSelector((state) => state.spots.currSpot);
   const [errors, setErrors] = useState([]);
   const sessionUser = useSelector((state) => state.session.user);
-  const [name, setName] = useState("");
-  const [type, setType] = useState("Space Station");
-  const [title, setTitle] = useState("");
-  const [pets, setPets] = useState(false);
-  const [totalOccupancy, setTotalOccupancy] = useState("");
-  const [totalBedrooms, setTotalBedrooms] = useState("");
-  const [totalBathrooms, setTotalBathrooms] = useState("");
-  const [description, setDescription] = useState("");
-  const [hasWifi, setWifi] = useState(false);
-  const [hasTV, setTV] = useState(false);
-  const [hasAC, setAC] = useState(false);
-  const [hasHeat, setHeat] = useState(false);
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState(null);
+  const [name, setName] = useState(currSpot?.name);
+  const [type, setType] = useState(currSpot?.type);
+  const [title, setTitle] = useState(currSpot?.title);
+  const [pets, setPets] = useState(currSpot?.pets);
+  const [totalOccupancy, setTotalOccupancy] = useState(
+    currSpot?.totalOccupancy
+  );
+  const [totalBedrooms, setTotalBedrooms] = useState(currSpot?.totalBedrooms);
+  const [totalBathrooms, setTotalBathrooms] = useState(
+    currSpot?.totalBathrooms
+  );
+  const [description, setDescription] = useState(currSpot?.description);
+  const [hasWifi, setWifi] = useState(currSpot?.hasWifi);
+  const [hasTV, setTV] = useState(currSpot?.hasTV);
+  const [hasAC, setAC] = useState(currSpot?.hasAC);
+  const [hasHeat, setHeat] = useState(currSpot?.hasHeat);
+  const [price, setPrice] = useState(currSpot?.price);
+  const [image, setImage] = useState(currSpot?.name);
   // const [postedAt, setPosted] = useState(new Date())
-  const [coordinates, setCoordinates] = useState("");
+  const [coordinates, setCoordinates] = useState(currSpot?.coordinates);
   // const [hostId, setHostId] = useState(sessionUser.id);
+  const reset = () => {
+    setName(currSpot?.name);
+    setType(currSpot?.type);
+    setTitle(currSpot?.title);
+    setPets(currSpot?.pets);
+    setTotalOccupancy(currSpot?.totalOccupancy);
+    setTotalBedrooms(currSpot?.totalBedrooms);
+    setTotalBathrooms(currSpot?.totalBathrooms);
+    setDescription(currSpot?.description);
+    setWifi(currSpot?.hasWifi);
+    setTV(currSpot?.hasTV);
+    setAC(currSpot?.hasAC);
+    setHeat(currSpot?.hasHeat);
+    setPrice(currSpot?.price);
+    setCoordinates(currSpot?.coordinates);
+    console.log(currSpot?.Images);
+    setImage(currSpot?.image);
+  };
   // useEffect(() => {
-  //   getState();
-  //   return () => setState({});
-  // });
+  //   reset();
+  // }, [currSpot]);
   const onSubmit = (e) => {
     e.preventDefault();
     let newErrors = [];
@@ -47,24 +69,21 @@ const AddPlaceForm = ({ setShowModal }) => {
         hasAC,
         hasHeat,
         price: parseInt(price, 10),
-        postedAt: new Date(),
         coordinates,
         hostId: sessionUser.id,
       },
-      image,
+      //   image,
     };
 
     resetSelections();
     reset();
-    dispatch(spotActions.addNewSpot(data))
+    const id = currSpot.id;
+    dispatch(spotActions.editOneSpot(id, data.spot))
       .then(() => {
-        setTimeout(() => {
-          spotActions.getHostsSpots(sessionUser);
-        }, 100);
         setShowModal(false);
       })
       .catch(async (res) => {
-        console.log(res);
+        // console.log(res);
         const data = await res;
         if (data && data.errors) {
           newErrors = data.errors;
@@ -73,25 +92,7 @@ const AddPlaceForm = ({ setShowModal }) => {
       });
     // return <Redirect to={`/places/${newSpot.id}`} />;
   };
-  const reset = () => {
-    setShowModal(false);
-    setName("");
-    setType("Space Station");
-    setTitle("");
-    setPets(false);
-    setTotalOccupancy("");
-    setTotalBedrooms("");
-    setTotalBathrooms("");
-    setDescription("");
-    // setWifi(false);
-    // setTV(false);
-    // setAC(false);
-    // setHeat(false);
-    setPrice("");
-    setImage("");
-    setCoordinates("");
-    resetSelections();
-  };
+
   const resetSelections = () => {
     setWifi(false);
     setTV(false);
@@ -102,11 +103,11 @@ const AddPlaceForm = ({ setShowModal }) => {
       .forEach((each) => each.classList.remove("selected"));
   };
 
-  const updateFile = (e) => {
-    const file = e.target.files[0];
-    console.log(file);
-    if (file) setImage(file);
-  };
+  // const updateFile = (e) => {
+  //   const file = e.target.files[0];
+  //   console.log(file);
+  //   if (file) setImage(file);
+  // };
   const selectToggle = (e) => {
     e.target.classList.toggle("selected");
   };
@@ -114,7 +115,7 @@ const AddPlaceForm = ({ setShowModal }) => {
     <div className="add-place-modal">
       <div className="header">
         <i className="fas fa-times" onClick={() => setShowModal(false)}></i>
-        <span>Add a Place</span>
+        <span>Edit {currSpot?.name}</span>
       </div>
       <form onSubmit={onSubmit} className="add-place-form">
         <ul className="errors">
@@ -202,7 +203,7 @@ const AddPlaceForm = ({ setShowModal }) => {
           Select all that apply:
           <div className="amenities">
             <div
-              className="amenity"
+              className={`amenity ${hasWifi ? "selected" : ""}`}
               onClick={(e) => {
                 selectToggle(e);
                 setWifi(!hasWifi);
@@ -211,7 +212,7 @@ const AddPlaceForm = ({ setShowModal }) => {
               Wifi
             </div>
             <div
-              className="amenity"
+              className={`amenity ${pets ? "selected" : ""}`}
               onClick={(e) => {
                 selectToggle(e);
                 setPets(!pets);
@@ -220,7 +221,7 @@ const AddPlaceForm = ({ setShowModal }) => {
               Pets Allowed
             </div>
             <div
-              className="amenity tv"
+              className={`amenity ${hasTV ? "selected" : ""}`}
               onClick={(e) => {
                 selectToggle(e);
                 setTV(!hasTV);
@@ -229,7 +230,7 @@ const AddPlaceForm = ({ setShowModal }) => {
               TV
             </div>
             <div
-              className="amenity"
+              className={`amenity ${hasAC ? "selected" : ""}`}
               onClick={(e) => {
                 selectToggle(e);
                 setAC(!hasAC);
@@ -238,7 +239,7 @@ const AddPlaceForm = ({ setShowModal }) => {
               Air Conditioning
             </div>
             <div
-              className="amenity"
+              className={`amenity ${hasHeat ? "selected" : ""}`}
               onClick={(e) => {
                 selectToggle(e);
                 setHeat(!hasHeat);
@@ -251,14 +252,14 @@ const AddPlaceForm = ({ setShowModal }) => {
             Clear All Selections
           </div>
         </div>
-        <label>
+        {/* <label>
           Add an Image!
           <input type="file" name="image" onChange={updateFile}></input>
-        </label>
-        <button>Host this Place!</button>
+        </label> */}
+        <button>Submit Edit</button>
       </form>
     </div>
   );
 };
 
-export default AddPlaceForm;
+export default EditSpotForm;

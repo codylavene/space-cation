@@ -5,7 +5,6 @@ import "./SpotCard.css";
 import SpotImage from "./SpotImage";
 import SpotDetails from "./SpotDetails";
 const SpotCard = ({ spot }) => {
-  console.log(spot.Images);
   return (
     <div className="spot-card">
       <Link to={`/places/${spot?.id}`}>

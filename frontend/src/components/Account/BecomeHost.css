@@ -1,0 +1,47 @@
+.host-activate-container {
+  width: 520px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.host-activate {
+  display: flex;
+  height: 60%;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.host-activate > button {
+  width: 220px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  color: white;
+  background-color: rgb(76, 63, 145);
+}
+
+.components-container {
+  margin-left: 15%;
+  margin-top: 35px;
+}
+
+.components-container > h2,
+h3 {
+  font-size: 22px;
+}
+
+.become-host-modal-show,
+.add-spot-show-modal {
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(76, 63, 145);
+  color: white;
+  padding: 4px 12px;
+}
+.host-spots-container {
+  margin-left: -15%;
+}

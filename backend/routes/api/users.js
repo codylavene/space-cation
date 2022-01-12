@@ -48,10 +48,7 @@ router.put(
   "/:id",
   asyncHandler(async (req, res) => {
     // const { isHost } = req.body;
-    console.log("+++++++++++++++++++", req.body);
-    console.log("+++++++++++++++++++", req.params.id);
     const { id } = req.params;
-    console.log(id);
     const user = await User.findByPk(parseInt(id, 10));
     const updatedUser = await user.update({ isHost: req.body.isHost });
 
@@ -69,7 +66,6 @@ router.get(
       where: { hostId: req.params.id },
       include: [Image, Review, User, Reservation],
     });
-    console.log(spots);
     return res.json(spots);
   })
 );

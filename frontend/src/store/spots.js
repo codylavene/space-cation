@@ -1,9 +1,11 @@
+import { useSelector } from "react-redux";
 import { csrfFetch } from "./csrf";
 /*--------------------------------------------------------------------*/
 // ACTIONS
 const SET_SPOT = "spots/setSpot";
 const LOAD_SPOTS = "spots/loadSpots";
 const ADD_SPOT = "spots/addSpot";
+const DELETE_SPOT = "spots/removeSpot";
 /*--------------------------------------------------------------------*/
 // ACTION CREATORS
 const setSpot = (currSpot) => {
@@ -26,6 +28,12 @@ const addSpot = (newSpot) => {
     newSpot,
   };
 };
+
+const deleteSpot = () => {
+  return {
+    type: DELETE_SPOT,
+  };
+};
 /*--------------------------------------------------------------------*/
 // FETCH UTIL FUNCTIONS
 export const getAllSpots = () => async (dispatch) => {
@@ -43,7 +51,26 @@ export const getOneSpot = (id) => async (dispatch) => {
   // console.log({ data });
   dispatch(setSpot(data));
 };
-
+export const deleteOneSpot = (id, user) => async (dispatch) => {
+  console.log(id);
+  const res = await csrfFetch(`/api/spots/${id}`, { method: "DELETE" });
+  // const data = await res.json();
+  dispatch(getHostsSpots(user));
+  return res;
+};
+const formDataBuilder = (spot) => {
+  console.log(spot);
+  const { image } = spot;
+  // console.log(image);
+  const formData = new FormData();
+  Object.entries(spot.spot).forEach((entry) => {
+    // console.log({ entry });
+    formData.append(entry[0], entry[1]);
+  });
+  if (image) formData.append("image", image);
+  console.log({ formData });
+  return formData;
+};
 export const addNewSpot = (newSpot) => async (dispatch) => {
   // const {
   //   type,
@@ -63,15 +90,7 @@ export const addNewSpot = (newSpot) => async (dispatch) => {
   //   coordinates,
   //   hostId,
   // } = newSpot.spot;
-  const { image } = newSpot;
-  console.log(image);
-  const formData = new FormData();
-  Object.entries(newSpot.spot).forEach((entry) => {
-    console.log({ entry });
-    formData.append(entry[0], entry[1]);
-  });
-  if (image) formData.append("image", image);
-  console.log(formData);
+  const formData = formDataBuilder(newSpot);
   const res = await csrfFetch(`/api/spots`, {
     method: "POST",
     headers: {
@@ -80,17 +99,38 @@ export const addNewSpot = (newSpot) => async (dispatch) => {
     body: formData,
   });
   const data = await res.json();
-  getHostsSpots(data.hostId);
+  console.log("data", data);
+  dispatch(getHostsSpots(data.createdSpot.hostId));
   // dispatch(loadSpots(data));
   // getAllSpots()
   return data;
 };
 
 export const getHostsSpots = (user) => async (dispatch) => {
-  const res = await csrfFetch(`/api/users/${user.id}`);
+  let id;
+  if (typeof user === "number") id = user;
+  else id = user.id;
+  const res = await csrfFetch(`/api/users/${id}`);
   const data = await res.json();
-  console.log(data);
+  console.log({ data });
   dispatch(loadSpots(data));
+};
+
+export const editOneSpot = (id, spot) => async (dispatch) => {
+  // const formData = formDataBuilder(spot);
+  // console.log({ formData });
+  const res = await csrfFetch(`/api/spots/${id}`, {
+    method: "PUT",
+    headers: {
+      // "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(spot),
+  });
+  const data = await res.json();
+  console.log({ data });
+  dispatch(getHostsSpots(data.updatedSpot.hostId));
+  return data;
 };
 /*--------------------------------------------------------------------*/
 // SPOTS REDUCER
@@ -119,6 +159,10 @@ const spotsReducer = (state = initialState, action) => {
       ];
       return newState;
     }
+    // case DELETE_SPOT: {
+    //   const newState = { ...state };
+    //   newState.entries =
+    // }
     default:
       return state;
   }

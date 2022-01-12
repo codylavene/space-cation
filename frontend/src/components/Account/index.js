@@ -5,6 +5,7 @@ import AddPlaceForm from "./AddPlaceForm";
 import AddPlaceModal from "./AddPlaceModal";
 import BecomeHostForm from "./BecomeHostForm";
 import BecomeHostModal from "./BecomeHostModal";
+
 import "./AddPlaceForm.css";
 import HostSpots from "../Pages/Spots/HostSpots";
 
@@ -33,13 +34,15 @@ const Account = (props) => {
   }
   return (
     <div>
-      <div>
-        <h2>Account</h2>
-        <h2>{sessionUser?.name}</h2>
-        <h2>{sessionUser?.username}</h2>
-        <h3>{sessionUser?.email}</h3>
+      <div className="components-container">
+        <h2 style={{ fontSize: 32 }}>Account</h2>
+        <h2>{sessionUser.name ? `Name: ${sessionUser?.name}` : ""}</h2>
+        <h2>
+          {sessionUser.username ? `Username: ${sessionUser?.username}` : ""}
+        </h2>
+        <h3>{sessionUser.email ? `Email: ${sessionUser?.email}` : ""}</h3>
       </div>
-      <div>
+      <div className="components-container">
         {components}
         {/* {showModal && (
           <Modal onClose={() => setShowModal(false)}>
