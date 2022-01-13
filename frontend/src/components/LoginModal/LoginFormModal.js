@@ -70,6 +70,9 @@ function LoginForm({ setShowModal }) {
           Demo Login
         </button>
       </form>
+      <div className="sign-up-link">
+        {/* Don't have an account? <span>Sign Up</span> */}
+      </div>
     </div>
   );
 }

@@ -20,7 +20,7 @@
   border-radius: 10px;
   font-size: 16px;
   color: white;
-  background-color: rgb(76, 63, 145);
+  background-color: #453f78;
 }
 
 .components-container {
@@ -36,11 +36,17 @@ h3 {
 .become-host-modal-show,
 .add-spot-show-modal {
   height: 50px;
+  width: 200px;
   border: none;
   border-radius: 8px;
-  background-color: rgb(76, 63, 145);
+  background-color: #453f78;
   color: white;
   padding: 4px 12px;
+}
+
+.become-host-modal-show:hover,
+.add-spot-show-modal:hover {
+  background-color: #3d386b;
 }
 .host-spots-container {
   margin-left: -15%;

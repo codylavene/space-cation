@@ -24,6 +24,7 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginModal";
 import "./Navigation.css";
+import { ReactComponent as Logo } from "../../assets/1.svg";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -41,25 +42,27 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <>
+    <div className="nav">
       <nav>
-        <NavLink exact to="/" className="logo">
-          Home
-        </NavLink>
+        <div className="logo-container">
+          <NavLink exact to="/" className="logo">
+            <Logo />
+          </NavLink>
+        </div>
         <div className="main-links">
           <NavLink to="/places">Places to stay</NavLink>
-          <NavLink to="/experiences">Experiences</NavLink>
-          <NavLink to="/host-signup">Become a Host</NavLink>
+          {/* <NavLink to="/experiences">Experiences</NavLink> */}
+          <NavLink to={`/users/${sessionUser?.id}`}>Become a Host</NavLink>
         </div>
         {isLoaded && sessionLinks}
       </nav>
-      <div className="search">
+      {/* <div className="search">
         <input type="search" placeholder="Where are you going?"></input>
         <div className="search-icon">
           <i className="fas fa-search"></i>
         </div>
-      </div>
-    </>
+      </div> */}
+    </div>
   );
 }
 

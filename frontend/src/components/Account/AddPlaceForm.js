@@ -24,32 +24,42 @@ const AddPlaceForm = ({ setShowModal }) => {
   const [image, setImage] = useState(null);
   // const [postedAt, setPosted] = useState(new Date())
   const [coordinates, setCoordinates] = useState("");
+  const [disabled, setDisabled] = useState(false);
   // const [hostId, setHostId] = useState(sessionUser.id);
-  // useEffect(() => {
-  //   const errs = [];
-  //   if (name.length === 0) errs.push("You must provide a name");
-  //   if (title.length === 0) errs.push("You must provide a title");
-  //   if (totalBathrooms === 0)
-  //     errs.push("You must provide at least one bathroom for your guests");
-  //   if (totalBedrooms === 0)
-  //     errs.push("You must provide Bedrooms to your guests");
-  //   if (totalBathrooms === 0)
-  //     errs.push("You must provide bathrooms to your guests");
-  //   if (name.length === 0) errs.push("You must provide a name");
-  //   if (name.length === 0) errs.push("You must provide a name");
-  //   if (name.length === 0) errs.push("You must provide a name");
-  // }, [
-  //   name,
-  //   title,
-  //   totalBathrooms,
-  //   totalBedrooms,
-  //   totalOccupancy,
-  //   description,
-  //   price,
-  // ]);
+  useEffect(() => {
+    const errs = [];
+    if (name.length === 0) errs.push("You must provide a name");
+    if (title.length === 0) errs.push("You must provide a title");
+    if (totalBathrooms === 0)
+      errs.push("You must provide at least one bathroom for your guests");
+    if (totalBedrooms === 0)
+      errs.push("You must provide Bedrooms to your guests");
+    if (totalOccupancy === 0)
+      errs.push("You must allow at least one guest to stay");
+    if (description.length === 0) errs.push("You must provide a description");
+    if (price === 0)
+      errs.push("This isn't charity, provide a price so we can get our cut");
+
+    if (errs.length > 0) {
+      setDisabled(true);
+      setErrors(errs);
+    } else {
+      setDisabled(false);
+      setErrors([]);
+    }
+  }, [
+    name,
+    title,
+    totalBathrooms,
+    totalBedrooms,
+    totalOccupancy,
+    description,
+    price,
+  ]);
   const onSubmit = (e) => {
     e.preventDefault();
     let newErrors = [];
+
     const data = {
       spot: {
         type,
@@ -71,7 +81,6 @@ const AddPlaceForm = ({ setShowModal }) => {
       },
       image,
     };
-
     resetSelections();
     reset();
     dispatch(spotActions.addNewSpot(data))
@@ -106,7 +115,7 @@ const AddPlaceForm = ({ setShowModal }) => {
     // setAC(false);
     // setHeat(false);
     setPrice("");
-    setImage("");
+    setImage(null);
     setCoordinates("");
     resetSelections();
   };
@@ -138,15 +147,21 @@ const AddPlaceForm = ({ setShowModal }) => {
         <ul className="errors">
           {errors.length > 0 && errors.map((err) => <li key={err}>{err}</li>)}
         </ul>
-        <label>
-          Type of Property
-          <select value={type} onChange={(e) => setType(e.target.value)}>
-            <option value="Space Station">Space Station</option>
-            <option value="Satellite">Satellite</option>
-            <option value="Moon">Moon</option>
-            <option value="Mars">Mars</option>
-          </select>
-        </label>
+        <div className="select-container">
+          <label>
+            Type of Property
+            <select
+              className="select-type"
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+            >
+              <option value="Space Station">Space Station</option>
+              <option value="Satellite">Satellite</option>
+              <option value="Moon">Moon</option>
+              <option value="Mars">Mars</option>
+            </select>
+          </label>
+        </div>
         <div className="add-place-inputs">
           <input
             className="top-input"
@@ -154,7 +169,7 @@ const AddPlaceForm = ({ setShowModal }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="What would you like to name this property?"
-            required
+            // required
           />
           <input
             className="mid-input"
@@ -162,7 +177,7 @@ const AddPlaceForm = ({ setShowModal }) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="The main title to be displayed"
-            required
+            // required
           />
 
           <input
@@ -171,7 +186,7 @@ const AddPlaceForm = ({ setShowModal }) => {
             min={1}
             onChange={(e) => setTotalOccupancy(e.target.value)}
             placeholder="How many people can this property host?"
-            required
+            // required
           />
           <input
             type="number"
@@ -179,7 +194,7 @@ const AddPlaceForm = ({ setShowModal }) => {
             min={1}
             onChange={(e) => setTotalBedrooms(e.target.value)}
             placeholder="How many bedrooms?"
-            required
+            // required
           />
           <input
             type="number"
@@ -187,7 +202,7 @@ const AddPlaceForm = ({ setShowModal }) => {
             min={1}
             onChange={(e) => setTotalBathrooms(e.target.value)}
             placeholder="How many bathrooms?"
-            required
+            // required
           />
 
           <input
@@ -195,7 +210,7 @@ const AddPlaceForm = ({ setShowModal }) => {
             value={coordinates}
             onChange={(e) => setCoordinates(e.target.value)}
             placeholder="What are the Coordinates of the property? (format: 'latitude, longitude')"
-            required
+            // required
           />
           <input
             className="bottom-input"
@@ -204,14 +219,14 @@ const AddPlaceForm = ({ setShowModal }) => {
             min={1}
             onChange={(e) => setPrice(e.target.value)}
             placeholder="Price per night (format: '123456')"
-            required
+            // required
           />
         </div>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Tell us about the property!"
-          required
+          // required
         />
         {/* <label>
           Pets Allowed?
@@ -273,11 +288,18 @@ const AddPlaceForm = ({ setShowModal }) => {
             Clear All Selections
           </div>
         </div>
-        <label>
-          Add an Image!
-          <input type="file" name="image" onChange={updateFile}></input>
-        </label>
-        <button>Host this Place!</button>
+        <div className="select-image-container">
+          <label>
+            Add an Image!
+            <input
+              className="select-image"
+              type="file"
+              name="image"
+              onChange={updateFile}
+            ></input>
+          </label>
+        </div>
+        <button disabled={disabled}>Host this Place!</button>
       </form>
     </div>
   );

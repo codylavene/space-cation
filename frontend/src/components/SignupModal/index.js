@@ -5,6 +5,7 @@ import SignupForm from "./SignupFormModal.js";
 
 function SignupFormModal() {
   const [showModal, setShowModal] = useState(false);
+  // const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (
     <>
@@ -13,7 +14,10 @@ function SignupFormModal() {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <SignupForm setShowModal={setShowModal} />
+          <SignupForm
+            setShowModal={setShowModal}
+            // setShowLoginModal={setShowLoginModal}
+          />
         </Modal>
       )}
     </>

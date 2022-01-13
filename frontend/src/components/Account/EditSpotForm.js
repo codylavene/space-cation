@@ -121,15 +121,21 @@ const EditSpotForm = ({ setShowModal }) => {
         <ul className="errors">
           {errors.length > 0 && errors.map((err) => <li key={err}>{err}</li>)}
         </ul>
-        <label>
-          Type of Property
-          <select value={type} onChange={(e) => setType(e.target.value)}>
-            <option value="Space Station">Space Station</option>
-            <option value="Satellite">Satellite</option>
-            <option value="Moon">Moon</option>
-            <option value="Mars">Mars</option>
-          </select>
-        </label>
+        <div className="select-container">
+          <label>
+            Type of Property
+            <select
+              className="select-type"
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+            >
+              <option value="Space Station">Space Station</option>
+              <option value="Satellite">Satellite</option>
+              <option value="Moon">Moon</option>
+              <option value="Mars">Mars</option>
+            </select>
+          </label>
+        </div>
         <div className="add-place-inputs">
           <input
             className="top-input"

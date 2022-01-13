@@ -3,13 +3,12 @@ import React from "react";
 const ImageTile = ({ images }) => {
   // console.log({ spot });
   return (
-    <div style={{ width: "90%" }}>
+    <div className="all-spot-images">
       {images?.length &&
         images.map((image) => (
-          <div
-            key={image.id}
-            style={{ backgroundImage: `url(${image?.url})` }}
-          ></div>
+          <div className="spot-image-container" key={image.id}>
+            <img alt={image.url} src={image?.url}></img>
+          </div>
         ))}
     </div>
   );

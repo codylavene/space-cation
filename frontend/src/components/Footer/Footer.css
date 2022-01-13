@@ -1,12 +1,15 @@
 .footer {
   position: absolute;
   bottom: 0px;
-  height: 100px;
+  height: 160px;
   width: 100%;
+  padding: 30px 30px;
   border-top: 1px solid rgb(190, 190, 190);
-  background-color: #4a0b5c;
-  color: white;
+  /* background-color: #453f78; */
+  background-color: #161712;
+  color: #e5e7e6;
   font-weight: 300;
+  margin-top: 40px;
 }
 .techs {
   display: flex;
@@ -18,4 +21,16 @@
 .my-details {
   margin: 10px auto;
   text-align: center;
+}
+
+.my-details > a {
+  color: #e5e7e6;
+  text-decoration: none;
+  margin: 10px;
+  /* padding: 10px; */
+}
+.my-details > a:hover {
+  color: white;
+  border-bottom: 2px solid white;
+  font-weight: bolder;
 }

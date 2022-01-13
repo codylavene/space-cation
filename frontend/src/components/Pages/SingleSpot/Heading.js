@@ -3,7 +3,7 @@ import ImageTile from "./ImageCard";
 
 const Heading = ({ spot }) => {
   return (
-    <div>
+    <div className="title-container">
       <h1 className="title">{spot?.title}</h1>
       <div>
         <span className="rating">{spot?.Reviews?.rating}</span>

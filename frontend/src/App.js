@@ -35,6 +35,9 @@ function App() {
           <Route path="/users/:id">
             <Account isLoaded={isLoaded} />
           </Route>
+          {/* <Route>
+            <ErrorPage />
+          </Route> */}
         </Switch>
       )}
       <Footer />

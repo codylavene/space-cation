@@ -68,3 +68,21 @@ form button {
   color: white;
   background-color: rgb(76, 63, 145);
 }
+
+.sign-up-link {
+  /* width: 100%; */
+  text-align: center;
+  padding: 5px 10px;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+.sign-up-link > span {
+  color: #4c3f91;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.sign-up-link > span:hover {
+  cursor: pointer;
+}

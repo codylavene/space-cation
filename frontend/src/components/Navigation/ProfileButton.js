@@ -36,17 +36,17 @@ const ProfileButton = ({ user }) => {
   if (user) {
     sessionLinks = (
       <>
-        <span style={{ color: "white" }}>
+        {/* <Link exact="true" to={`/users/${user.id}/messages`}>
+          Messages
+        </Link> */}
+        {/* <Link exact="true" to={`/users/${user.id}/trips`}>
+          Trips
+        </Link> */}
+        <span>
           Welcome,
           <br />
           {user.username}
         </span>
-        <Link exact="true" to={`/users/${user.id}/messages`}>
-          Messages
-        </Link>
-        <Link exact="true" to={`/users/${user.id}/trips`}>
-          Trips
-        </Link>
         <Link exact="true" to={`/users/${user.id}`}>
           Account
         </Link>

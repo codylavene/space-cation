@@ -1,11 +1,6 @@
 .main-image-container {
   width: 100%;
-  background: linear-gradient(
-    rgb(0, 0, 0),
-    rgb(74, 11, 92),
-    rgb(180, 89, 230),
-    rgb(255, 255, 255) 100%
-  );
+  background: linear-gradient(#161712, #453f78, #e5e7e6);
   height: 1000px;
   padding-top: 10px;
   display: flex;
@@ -52,6 +47,7 @@
   width: 100%;
   max-width: 1920px;
   margin-top: 20px;
+  margin-bottom: 80px;
   margin-left: auto;
   margin-right: auto;
   height: fit-content;
@@ -115,16 +111,16 @@
 }
 
 #Mars {
-  background-color: #c55fe1;
+  background-color: #7066c4;
 }
 #Moon {
-  background-color: #5f1f70;
+  background-color: #36315e;
 }
 #Orbit {
-  background-color: #4a0b5c;
+  background-color: #201d38;
 }
 #ISS {
-  background-color: #b11adb;
+  background-color: #4b4585;
 }
 .place-name {
   font-size: 30px;

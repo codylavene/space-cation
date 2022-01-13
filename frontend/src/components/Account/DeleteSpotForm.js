@@ -19,7 +19,10 @@ const DeleteSpotForm = ({ setShowModal, spotId }) => {
         <div>
           Are you sure you want to delete? This action cannot be undone.
         </div>
-        <button onClick={deleteSpot}>Delete</button>
+        <button id="delete-spot" onClick={deleteSpot}>
+          Delete
+        </button>
+        <button onClick={() => setShowModal(false)}>Cancel</button>
       </div>
     </div>
   );
