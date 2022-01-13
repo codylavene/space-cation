@@ -9,22 +9,28 @@ const router = express.Router();
 // MIDDLEWARE
 const validateSignup = [
   check("name")
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
+    // .withMessage(
+    //   "Please provide your name (must be between 3 and 200 characters."
+    // )
     .isLength({ min: 3, max: 200 })
     .withMessage(
       "Please provide your name (must be between 3 and 200 characters."
     ),
   check("username")
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
+    // .withMessage("Please provide a username between 4 and 30 characters.")
     .isLength({ min: 4, max: 30 })
-    .withMessage("Please provide a username between 4 and 30 characters."),
+    .withMessage("Username must be between 4 and 30 characters."),
   check("username").not().isEmail().withMessage("Username cannot be an email."),
   check("email")
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
+    // .withMessage("Please provide a valid email.")
     .isEmail()
     .withMessage("Please provide a valid email."),
   check("password")
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
+    // .withMessage("Password must be at least 6 characters")
     .isLength({ min: 6 })
     .withMessage("Password must be at least 6 characters"),
   handleValidationErrors,

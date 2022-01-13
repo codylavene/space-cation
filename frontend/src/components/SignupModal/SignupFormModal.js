@@ -25,7 +25,10 @@ const SignupModal = ({ setShowModal }) => {
         if (data && data.errors) setErrors(data.errors);
       });
     }
-    return setErrors(["Confirm Password and Password fields must match"]);
+    return setErrors([
+      ...errors,
+      "Confirm Password and Password fields must match",
+    ]);
   };
   // useEffect(() => {
   //   const errs = [];

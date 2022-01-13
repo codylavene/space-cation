@@ -26,9 +26,27 @@ const AddPlaceForm = ({ setShowModal }) => {
   const [coordinates, setCoordinates] = useState("");
   // const [hostId, setHostId] = useState(sessionUser.id);
   // useEffect(() => {
-  //   getState();
-  //   return () => setState({});
-  // });
+  //   const errs = [];
+  //   if (name.length === 0) errs.push("You must provide a name");
+  //   if (title.length === 0) errs.push("You must provide a title");
+  //   if (totalBathrooms === 0)
+  //     errs.push("You must provide at least one bathroom for your guests");
+  //   if (totalBedrooms === 0)
+  //     errs.push("You must provide Bedrooms to your guests");
+  //   if (totalBathrooms === 0)
+  //     errs.push("You must provide bathrooms to your guests");
+  //   if (name.length === 0) errs.push("You must provide a name");
+  //   if (name.length === 0) errs.push("You must provide a name");
+  //   if (name.length === 0) errs.push("You must provide a name");
+  // }, [
+  //   name,
+  //   title,
+  //   totalBathrooms,
+  //   totalBedrooms,
+  //   totalOccupancy,
+  //   description,
+  //   price,
+  // ]);
   const onSubmit = (e) => {
     e.preventDefault();
     let newErrors = [];
@@ -135,38 +153,41 @@ const AddPlaceForm = ({ setShowModal }) => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="What would you like to call this Property?"
-            // required
+            placeholder="What would you like to name this property?"
+            required
           />
           <input
             className="mid-input"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="The Main Title to be Displayed"
-            // required
+            placeholder="The main title to be displayed"
+            required
           />
 
           <input
             type="number"
             value={totalOccupancy}
+            min={1}
             onChange={(e) => setTotalOccupancy(e.target.value)}
             placeholder="How many people can this property host?"
-            // required
+            required
           />
           <input
             type="number"
             value={totalBedrooms}
+            min={1}
             onChange={(e) => setTotalBedrooms(e.target.value)}
             placeholder="How many bedrooms?"
-            // required
+            required
           />
           <input
             type="number"
             value={totalBathrooms}
+            min={1}
             onChange={(e) => setTotalBathrooms(e.target.value)}
             placeholder="How many bathrooms?"
-            // required
+            required
           />
 
           <input
@@ -174,22 +195,23 @@ const AddPlaceForm = ({ setShowModal }) => {
             value={coordinates}
             onChange={(e) => setCoordinates(e.target.value)}
             placeholder="What are the Coordinates of the property? (format: 'latitude, longitude')"
-            // required
+            required
           />
           <input
             className="bottom-input"
             type="number"
             value={price}
+            min={1}
             onChange={(e) => setPrice(e.target.value)}
             placeholder="Price per night (format: '123456')"
-            // required
+            required
           />
         </div>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Tell us about the property!"
-          // required
+          required
         />
         {/* <label>
           Pets Allowed?

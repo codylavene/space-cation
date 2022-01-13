@@ -1,8 +1,25 @@
 const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
+const { check } = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
 const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
 const { Spot, Image, Review, Reservation, User } = require("../../db/models");
+/*--------------------------------------------------------------------*/
+// VALIDATION
+const spotValidator = [
+  check("name")
+    .exists({ checkFalsey: true })
+    .withMessage("You have to call your spot something..."),
+  check("title")
+    .exists({ checkFalsey: true })
+    .withMessage("It's not good advertising to exclude the title..."),
+  check("totalOccupants")
+    .isInt({ min: 1 })
+    .withMessage("If you're here, you want people to stay there, right?"),
+  // check("")
+  handleValidationErrors,
+];
 /*--------------------------------------------------------------------*/
 // GET SINGLE SPOT
 router.get(
@@ -32,6 +49,7 @@ router.get(
 // CREATE NEW SPOT
 router.post(
   "/",
+  // spotValidator,
   singleMulterUpload("image"),
   asyncHandler(async (req, res) => {
     console.log(req.body);
@@ -74,12 +92,14 @@ router.post(
     };
     const createdSpot = await Spot.create(newSpot);
     if (createdSpot) {
-      const imageUrl = await singlePublicFileUpload(req.file);
-      const newImage = await Image.create({
-        url: imageUrl,
-        spotId: createdSpot.id,
-      });
-      return res.json({ createdSpot, newImage });
+      if (req.file) {
+        const imageUrl = await singlePublicFileUpload(req.file);
+        const newImage = await Image.create({
+          url: imageUrl,
+          spotId: createdSpot.id,
+        });
+        return res.json({ createdSpot, newImage });
+      } else return res.json({ createdSpot });
     } else {
       return res.json({ message: "Failed" });
     }

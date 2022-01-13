@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MainImage = (props) => {
   return (
@@ -6,7 +7,9 @@ const MainImage = (props) => {
       <div className="main-image">
         <div className="image-text">
           Not sure where to go? Perfect.
-          <div className="image-button">I'm flexible</div>
+          <Link className="image-button" to="/places">
+            I'm flexible
+          </Link>
         </div>
       </div>
     </div>
