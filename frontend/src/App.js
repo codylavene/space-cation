@@ -10,6 +10,7 @@ import Spots from "./components/Pages/Spots";
 import SingleSpot from "./components/Pages/SingleSpot";
 import Landing from "./components/Pages/Landing";
 import Account from "./components/Account";
+import SpotsByType from "./components/Pages/SpotsByType";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ function App() {
           <Route exact path="/">
             <Landing />
           </Route>
+          <Route path="/categories/:type">
+            <SpotsByType />
+          </Route>
           <Route path="/places/:id">
             <SingleSpot />
           </Route>
@@ -35,11 +39,9 @@ function App() {
           <Route path="/users/:id">
             <Account isLoaded={isLoaded} />
           </Route>
-          {/* <Route>
-            <ErrorPage />
-          </Route> */}
         </Switch>
       )}
+
       <Footer />
     </>
   );

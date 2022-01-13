@@ -7,7 +7,7 @@
   height: 64px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgb(235, 235, 235);
+  border-bottom: 1px solid #b7b5b3;
 }
 
 .fa-times {

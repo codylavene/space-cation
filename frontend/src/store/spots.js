@@ -120,6 +120,18 @@ export const editOneSpot = (id, spot) => async (dispatch) => {
   dispatch(getHostsSpots(data.updatedSpot.hostId));
   return data;
 };
+
+export const getSpotsByType = (type) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/categories/${type}`);
+  const data = await res.json();
+  console.log("<><><><><>", data);
+  const numOfSpots = Object.values(data).length;
+  console.log({ data });
+  console.log(numOfSpots);
+
+  dispatch(loadSpots(data.spots));
+  // } else dispatch(setSpot(data.spot));
+};
 /*--------------------------------------------------------------------*/
 // SPOTS REDUCER
 const initialState = { entries: [], currSpot: null };

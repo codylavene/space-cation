@@ -5,6 +5,7 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
 const { Spot, Image, Review, Reservation, User } = require("../../db/models");
+const { Op } = require("sequelize");
 /*--------------------------------------------------------------------*/
 // VALIDATION
 const spotValidator = [
@@ -164,6 +165,20 @@ router.delete(
     } else {
       return res.json({ message: "Failed" });
     }
+  })
+);
+
+router.get(
+  "/categories/:type",
+  asyncHandler(async (req, res) => {
+    const type = req.params.type;
+    const spots = await Spot.findAll({
+      where: { type: type },
+      include: [Image, Review, Reservation, User],
+    });
+    if (spots) {
+      res.json({ spots });
+    } else res.json({ message: "No spots of provided type" });
   })
 );
 module.exports = router;

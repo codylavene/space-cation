@@ -8,12 +8,14 @@ import Heading from "./Heading";
 import "./SingleSpot.css";
 import Description from "./Description";
 
-const SingleSpot = () => {
-  const { id } = useParams();
+const SingleSpot = (props) => {
   const dispatch = useDispatch();
+
   const currSpot = useSelector((state) => state.spots.currSpot);
+  const { id } = useParams();
+
   useEffect(() => {
-    dispatch(spotActions.getAllSpots());
+    // dispatch(spotActions.getAllSpots());
     dispatch(spotActions.getOneSpot(id));
   }, [dispatch, id]);
 
