@@ -17,7 +17,6 @@ const SingleSpot = () => {
     dispatch(spotActions.getOneSpot(id));
   }, [dispatch, id]);
 
-  // console.log({ spot });
   // const spots = Object.values(spotsObj);
   // const spot = spots.find((spot) => spot.id === id);
   return (

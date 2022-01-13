@@ -39,36 +39,28 @@ const deleteSpot = () => {
 export const getAllSpots = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots");
   const data = await res.json();
-  // console.log(JSON.stringify(data, null, 4));
   dispatch(loadSpots(data));
   // return res;
 };
 
 export const getOneSpot = (id) => async (dispatch) => {
-  // console.log("ID in GETONESPOT", id);
   const res = await csrfFetch(`/api/spots/${id}`);
   const data = await res.json();
-  // console.log({ data });
   dispatch(setSpot(data));
 };
 export const deleteOneSpot = (id, user) => async (dispatch) => {
-  console.log(id);
   const res = await csrfFetch(`/api/spots/${id}`, { method: "DELETE" });
   // const data = await res.json();
   dispatch(getHostsSpots(user));
   return res;
 };
 const formDataBuilder = (spot) => {
-  console.log(spot);
   const { image } = spot;
-  // console.log(image);
   const formData = new FormData();
   Object.entries(spot.spot).forEach((entry) => {
-    // console.log({ entry });
     formData.append(entry[0], entry[1]);
   });
   if (image) formData.append("image", image);
-  console.log({ formData });
   return formData;
 };
 export const addNewSpot = (newSpot) => async (dispatch) => {
@@ -99,7 +91,6 @@ export const addNewSpot = (newSpot) => async (dispatch) => {
     body: formData,
   });
   const data = await res.json();
-  console.log("data", data);
   dispatch(getHostsSpots(data.createdSpot.hostId));
   // dispatch(loadSpots(data));
   // getAllSpots()
@@ -112,13 +103,11 @@ export const getHostsSpots = (user) => async (dispatch) => {
   else id = user.id;
   const res = await csrfFetch(`/api/users/${id}`);
   const data = await res.json();
-  console.log({ data });
   dispatch(loadSpots(data));
 };
 
 export const editOneSpot = (id, spot) => async (dispatch) => {
   // const formData = formDataBuilder(spot);
-  // console.log({ formData });
   const res = await csrfFetch(`/api/spots/${id}`, {
     method: "PUT",
     headers: {
@@ -128,7 +117,6 @@ export const editOneSpot = (id, spot) => async (dispatch) => {
     body: JSON.stringify(spot),
   });
   const data = await res.json();
-  console.log({ data });
   dispatch(getHostsSpots(data.updatedSpot.hostId));
   return data;
 };

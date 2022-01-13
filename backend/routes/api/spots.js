@@ -31,7 +31,6 @@ router.get(
     if (spot) {
       return res.json(spot);
     }
-    console.log("Spot in API", spot, " SpotId", spot.id);
   })
 );
 // GET ALL SPOTS
@@ -42,7 +41,6 @@ router.get(
       include: [Image, Review, User, Reservation],
     });
 
-    console.log("Spots in API", JSON.stringify(spots, null, 4));
     return res.json(spots);
   })
 );
@@ -52,7 +50,6 @@ router.post(
   // spotValidator,
   singleMulterUpload("image"),
   asyncHandler(async (req, res) => {
-    console.log(req.body);
     const {
       type,
       name,
@@ -109,8 +106,6 @@ router.post(
 router.put(
   "/:id",
   asyncHandler(async (req, res) => {
-    console.log("<><><><><><><><><><><><><>", req.body);
-    console.log(req.body);
     const {
       type,
       name,
@@ -153,7 +148,6 @@ router.put(
     const spot = await Spot.findByPk(req.params.id);
     const updatedSpot = await spot.update(spotToUpdate);
     // return res.json({ spot });
-    console.log({ updatedSpot });
     return res.json({ updatedSpot });
   })
 );

@@ -27,7 +27,6 @@ const SpotDetails = ({ spot }) => {
     };
     if (Reviews.length) {
       setRating(getAvgRating(Reviews));
-      console.log(rating);
     }
   }, [spot, Reviews, rating]);
 

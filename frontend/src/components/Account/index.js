@@ -17,7 +17,6 @@ const Account = (props) => {
   //   if (sessionUser?.isHost) setHost(true);
   // }, [host, sessionUser.isHost]);
   let components;
-  console.log(sessionUser?.isHost);
   if (sessionUser?.isHost) {
     components = (
       <>

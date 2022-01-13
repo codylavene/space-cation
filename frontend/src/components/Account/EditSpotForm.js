@@ -45,7 +45,6 @@ const EditSpotForm = ({ setShowModal }) => {
     setHeat(currSpot?.hasHeat);
     setPrice(currSpot?.price);
     setCoordinates(currSpot?.coordinates);
-    console.log(currSpot?.Images);
     setImage(currSpot?.image);
   };
   // useEffect(() => {
@@ -83,7 +82,6 @@ const EditSpotForm = ({ setShowModal }) => {
         setShowModal(false);
       })
       .catch(async (res) => {
-        // console.log(res);
         const data = await res;
         if (data && data.errors) {
           newErrors = data.errors;
@@ -105,7 +103,6 @@ const EditSpotForm = ({ setShowModal }) => {
 
   // const updateFile = (e) => {
   //   const file = e.target.files[0];
-  //   console.log(file);
   //   if (file) setImage(file);
   // };
   const selectToggle = (e) => {

@@ -91,7 +91,6 @@ const AddPlaceForm = ({ setShowModal }) => {
         setShowModal(false);
       })
       .catch(async (res) => {
-        console.log(res);
         const data = await res;
         if (data && data.errors) {
           newErrors = data.errors;
@@ -131,7 +130,6 @@ const AddPlaceForm = ({ setShowModal }) => {
 
   const updateFile = (e) => {
     const file = e.target.files[0];
-    console.log(file);
     if (file) setImage(file);
   };
   const selectToggle = (e) => {

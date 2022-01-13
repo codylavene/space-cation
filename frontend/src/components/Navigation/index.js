@@ -18,7 +18,7 @@
 // };
 
 // export default Navigation;
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
@@ -28,6 +28,7 @@ import { ReactComponent as Logo } from "../../assets/1.svg";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
+  const [showModal, setShowModal] = useState(false);
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = <ProfileButton user={sessionUser} />;
@@ -52,7 +53,21 @@ function Navigation({ isLoaded }) {
         <div className="main-links">
           <NavLink to="/places">Places to stay</NavLink>
           {/* <NavLink to="/experiences">Experiences</NavLink> */}
-          <NavLink to={`/users/${sessionUser?.id}`}>Become a Host</NavLink>
+          {sessionUser && (
+            <NavLink to={`/users/${sessionUser?.id}`}>Become a Host</NavLink>
+          )}
+          {!sessionUser && (
+            <NavLink
+              to="/"
+              // onClick={(e) => {
+              //   setShowModal(true);
+              //   e.preventDefault();
+              //   return <LoginFormModal setShowModal={setShowModal} />;
+              // }}
+            >
+              Become a Host
+            </NavLink>
+          )}
         </div>
         {isLoaded && sessionLinks}
       </nav>

@@ -7,7 +7,6 @@ const BecomeHostForm = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const updateUser = (e) => {
-    console.log(user);
     e.preventDefault();
     dispatch(sessionActions.updateHostStatus(user));
   };

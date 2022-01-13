@@ -12,7 +12,6 @@ const HostSpots = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const spotsObj = useSelector((state) => state.spots.entries);
   const currSpot = useSelector((state) => state.spots.currSpot);
-  console.log(currSpot);
   const spots = Object.values(spotsObj);
   useEffect(() => {
     const checkIfHost = () => {

@@ -63,7 +63,6 @@ export const updateHostStatus = (user) => async (dispatch) => {
     body: JSON.stringify({ isHost: true }),
   });
   const data = await res.json();
-  console.log(data);
   dispatch(setUser(data.updatedUser));
   return res;
 };

@@ -1,7 +1,6 @@
 import React from "react";
 
 const ImageTile = ({ images }) => {
-  // console.log({ spot });
   return (
     <div className="all-spot-images">
       {images?.length &&
