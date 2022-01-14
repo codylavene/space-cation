@@ -7,6 +7,7 @@ import * as spotActions from "../../../store/spots";
 import Heading from "./Heading";
 import "./SingleSpot.css";
 import Description from "./Description";
+import defaulImg from "../../../assets/default.jpg";
 
 const SingleSpot = (props) => {
   const dispatch = useDispatch();
