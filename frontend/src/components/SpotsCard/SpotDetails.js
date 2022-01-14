@@ -51,7 +51,7 @@ const SpotDetails = ({ spot }) => {
       {/*change address to name in database*/}
       <span
         className="line"
-        style={{ borderBottom: "1px solid rgb(190,190,190", width: "28px" }}
+        style={{ borderBottom: "1px solid rgb(190,190,190)", width: "28px" }}
       ></span>
       <div className="details">
         {`${totalOccupancy} guests - ${totalBedrooms} bedrooms - ${totalBathrooms} bath`}

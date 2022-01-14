@@ -9,9 +9,9 @@
 .main-image {
   background-image: url("../../../assets/landing-earth.jpg");
   background-repeat: no-repeat;
-  max-width: 1920px;
+  max-width: 1400px;
   min-width: 90%;
-  height: 700px;
+  height: 900px;
   background-size: cover;
   background-position: center;
   border-radius: 18px;

@@ -21,59 +21,56 @@ const ProfileButton = ({ user }) => {
     const closeMenu = () => {
       setShowMenu(false);
     };
-    // document.addEventListener("click", closeMenu);
+    document.addEventListener("click", closeMenu);
 
-    // return () => document.removeEventListener("click", closeMenu);
+    return () => document.removeEventListener("click", closeMenu);
   }, [showMenu, value]);
 
   const logout = (e) => {
     // e.preventDefault();
     dispatch(sessionActions.logout());
-    // return <Redirect to="/" />;
+    return <Redirect to="/" />;
   };
   let sessionLinks;
   if (user) {
     sessionLinks = (
-      <>
-        {/* <Link exact="true" to={`/users/${user.id}/messages`}>
-          Messages
-        </Link> */}
-        {/* <Link exact="true" to={`/users/${user.id}/trips`}>
-          Trips
-        </Link> */}
-        <span>
-          Welcome,
-          <br />
-          {user.username}
-        </span>
-        <Link exact="true" to={`/users/${user.id}`}>
-          Account
-        </Link>
-        <Link to="/" className="account-btn" onClick={logout}>
-          Logout
-        </Link>
-      </>
+      <div>
+        <div className="account-drop-btn" onClick={() => setShowMenu(true)}>
+          <i className="fas fa-bars" />
+          <i className="fas fa-user-circle" />
+        </div>
+        {showMenu && (
+          <div className="drop-menu">
+            <div className="account-link">
+              <Link to={`/users/${user.id}`}>
+                {user.isHost ? "View your spots" : "Become a host"}
+              </Link>
+            </div>
+            <div className="account-link">
+              <Link to={`/users/${user.id}`}>Account</Link>
+            </div>
+            <div className="account-link">
+              <button onClick={logout}>Logout</button>
+            </div>
+          </div>
+        )}
+      </div>
     );
   } else {
     sessionLinks = (
-      <>
-        <div className="nav-btn">
-          <LoginModal />
-          <SignupModal />
-        </div>
-        {/* <Link to="/become-a-host">Host Your Home</Link> */}
-      </>
+      <div className="nav-btn">
+        <LoginModal />
+        <SignupModal />
+      </div>
     );
   }
-  return (
-    <>
-      {/* <button onClick={openMenu}>
+  return sessionLinks;
+};
+export default ProfileButton;
+/**
+  *
+        { <button onClick={openMenu}>
         <i className="fas fa-bars" style={{ fontSize: 14 }}></i>
         <i className="fas fa-user-circle"></i>
-      </button> */}
-      {sessionLinks}
-    </>
-  );
-};
-
-export default ProfileButton;
+      </button> }
+  */
