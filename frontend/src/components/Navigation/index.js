@@ -56,18 +56,18 @@ function Navigation({ isLoaded }) {
           {sessionUser && (
             <NavLink to={`/users/${sessionUser?.id}`}>Become a Host</NavLink>
           )}
-          {!sessionUser && (
-            <NavLink
-              to="/"
-              // onClick={(e) => {
-              //   setShowModal(true);
-              //   e.preventDefault();
-              //   return <LoginFormModal setShowModal={setShowModal} />;
-              // }}
-            >
-              Become a Host
-            </NavLink>
-          )}
+          {/* {!sessionUser && (
+            // <NavLink
+            //   to="/"
+            //   // onClick={(e) => {
+            //   //   setShowModal(true);
+            //   //   e.preventDefault();
+            //   //   return <LoginFormModal setShowModal={setShowModal} />;
+            //   // }}
+            // >
+            //   Become a Host
+            // </NavLink>
+          )} */}
         </div>
         {isLoaded && sessionLinks}
       </nav>
