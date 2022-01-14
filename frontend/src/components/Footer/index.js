@@ -16,8 +16,20 @@ const Footer = (props) => {
       </div>
       <div className="my-details">
         <div>©2022 Cody Lavene</div>
-        <Link to="https://github.com/codylavene">GitHub</Link>
-        <Link to="https://www.linkedin.com/in/codylavene/">LinkedIn</Link>
+        <a
+          href="https://github.com/codylavene"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/codylavene/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn
+        </a>
       </div>
     </div>
   );

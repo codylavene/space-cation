@@ -287,10 +287,11 @@ const AddPlaceForm = ({ setShowModal }) => {
           </div>
         </div>
         <div className="select-image-container">
-          <label>
+          <label for="image">
             Add an Image!
             <input
               className="select-image"
+              id="image"
               type="file"
               name="image"
               onChange={updateFile}
