@@ -10,7 +10,6 @@ const SpotsByType = () => {
   const spotsObj = useSelector((state) => state.spots.entries);
   const sessionUser = useSelector((state) => state.session.user);
   const spots = Object.values(spotsObj);
-  console.log(spots);
   useEffect(() => {
     dispatch(spotActions.getSpotsByType(type));
   }, [dispatch, type]);

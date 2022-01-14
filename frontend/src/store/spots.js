@@ -124,10 +124,7 @@ export const editOneSpot = (id, spot) => async (dispatch) => {
 export const getSpotsByType = (type) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/categories/${type}`);
   const data = await res.json();
-  console.log("<><><><><>", data);
   const numOfSpots = Object.values(data).length;
-  console.log({ data });
-  console.log(numOfSpots);
 
   dispatch(loadSpots(data.spots));
   // } else dispatch(setSpot(data.spot));
