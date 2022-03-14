@@ -13,38 +13,37 @@ import Account from "./components/Account";
 import SpotsByType from "./components/Pages/SpotsByType";
 
 function App() {
-  const dispatch = useDispatch();
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+	const dispatch = useDispatch();
+	const [isLoaded, setIsLoaded] = useState(false);
+	useEffect(() => {
+		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+	}, [dispatch]);
 
-  return (
-    <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            <Landing />
-          </Route>
-          <Route path="/categories/:type">
-            <SpotsByType />
-          </Route>
-          <Route path="/places/:id">
-            <SingleSpot />
-          </Route>
-          <Route path="/places">
-            <Spots isLoaded={isLoaded} />
-          </Route>
-          <Route path="/users/:id">
-            <Account isLoaded={isLoaded} />
-          </Route>
-        </Switch>
-      )}
-
-      <Footer />
-    </>
-  );
+	return (
+		<>
+			<Navigation isLoaded={isLoaded} />
+			{isLoaded && (
+				<Switch>
+					<Route exact path="/">
+						<Landing />
+					</Route>
+					<Route path="/categories/:type">
+						<SpotsByType />
+					</Route>
+					<Route path="/places/:id">
+						<SingleSpot />
+					</Route>
+					<Route path="/places">
+						<Spots isLoaded={isLoaded} />
+					</Route>
+					<Route path="/users/:id">
+						<Account isLoaded={isLoaded} />
+					</Route>
+				</Switch>
+			)}
+			<Footer />
+		</>
+	);
 }
 
 export default App;
