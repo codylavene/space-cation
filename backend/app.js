@@ -19,13 +19,13 @@ if (!isProduction) app.use(cors());
 // app.use(helmet({ contentSecurityPolicy: false }));
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(
-  csurf({
-    cookie: {
-      secure: isProduction,
-      sameSite: isProduction && "lax",
-      httpOnly: true,
-    },
-  })
+	csurf({
+		cookie: {
+			secure: isProduction,
+			sameSite: isProduction && "lax",
+			httpOnly: true,
+		},
+	})
 );
 /*--------------------------------------------------------------------*/
 app.use(routes);
@@ -33,30 +33,30 @@ app.use(routes);
 // ERROR HANDLERS
 // TEST
 app.use((_req, _res, next) => {
-  const err = new Error("The requested resource could not be found.");
-  err.title = "Resource Not Found";
-  err.errors = ["The requested resource could not be found."];
-  err.status = 404;
-  next(err);
+	const err = new Error("The requested resource could not be found.");
+	err.title = "Resource Not Found";
+	err.errors = ["The requested resource could not be found."];
+	err.status = 404;
+	next(err);
 });
 
 app.use((err, _req, _res, next) => {
-  if (err instanceof ValidationError) {
-    err.errors = err.errors.map((e) => e.message);
-    err.title = "Validation Error";
-  }
-  next(err);
+	if (err instanceof ValidationError) {
+		err.errors = err.errors.map((e) => e.message);
+		err.title = "Validation Error";
+	}
+	next(err);
 });
 
 app.use((err, _req, res, next) => {
-  res.status(err.status || 500);
-  console.error(err);
-  res.json({
-    title: err.title || "Server Error",
-    message: err.message,
-    errors: err.errors,
-    stack: isProduction ? null : err.stack,
-  });
+	res.status(err.status || 500);
+	console.error(err);
+	res.json({
+		title: err.title || "Server Error",
+		message: err.message,
+		errors: err.errors,
+		stack: isProduction ? null : err.stack,
+	});
 });
 /*--------------------------------------------------------------------*/
 module.exports = app;
