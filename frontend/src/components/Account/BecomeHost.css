@@ -1,53 +1,53 @@
 .host-activate-container {
-  width: 520px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	width: 520px;
+	height: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .host-activate {
-  display: flex;
-  height: 60%;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
+	display: flex;
+	height: 60%;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
 }
 
 .host-activate > button {
-  width: 220px;
-  height: 50px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  color: white;
-  background-color: #453f78;
+	width: 220px;
+	height: 50px;
+	border: none;
+	border-radius: 10px;
+	font-size: 16px;
+	color: white;
+	background-color: #453f78;
 }
 
 .components-container {
-  margin-left: 15%;
-  margin-top: 35px;
+	margin-left: 15%;
+	margin-top: 35px;
 }
 
 .components-container > h2,
 h3 {
-  font-size: 22px;
+	font-size: 22px;
 }
 
 .become-host-modal-show,
 .add-spot-show-modal {
-  height: 50px;
-  width: 200px;
-  border: none;
-  border-radius: 8px;
-  background-color: #453f78;
-  color: white;
-  padding: 4px 12px;
+	height: 50px;
+	width: 200px;
+	border: none;
+	border-radius: 8px;
+	background-color: #453f78;
+	color: white;
+	padding: 4px 12px;
 }
 
 .become-host-modal-show:hover,
 .add-spot-show-modal:hover {
-  background-color: #3d386b;
+	background-color: #3d386b;
 }
 .host-spots-container {
-  margin-left: -15%;
+	margin-left: -15%;
 }

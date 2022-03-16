@@ -24,6 +24,7 @@
 		justify-content: space-between;
 		padding: 20px 0;
 		border-bottom: none;
+		margin: 0;
 	}
 	div.image-text {
 		font-size: 24px;
@@ -43,7 +44,7 @@
 	}
 
 	div.locations > div.location-container {
-		width: 80%;
+		width: 70%;
 		margin: 18px 0px;
 	}
 

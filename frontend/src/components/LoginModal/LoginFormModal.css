@@ -1,88 +1,88 @@
 .login-modal {
-  height: fit-content;
-  width: 570px;
-  border-radius: 10px;
+	height: fit-content;
+	width: 570px;
+	border-radius: 10px;
 }
 .header {
-  height: 64px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid rgb(235, 235, 235);
+	height: 64px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid rgb(235, 235, 235);
 }
 
 .fa-times {
-  color: #717171;
-  margin: 30px;
+	color: #717171;
+	margin: 30px;
 }
 
 .header > span {
-  position: relative;
-  left: 35%;
-  font-weight: 700;
+	position: relative;
+	left: 35%;
+	font-weight: 700;
 }
 
 .login-modal > form {
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 .inputs {
-  border: 1px solid rgb(190, 190, 190);
-  border-radius: 8px;
-  margin-top: 30px;
-  margin-bottom: 40px;
+	border: 1px solid rgb(190, 190, 190);
+	border-radius: 8px;
+	margin-top: 30px;
+	margin-bottom: 40px;
 }
 .inputs > input {
-  width: 520px;
-  height: 50px;
-  border: none;
-  padding: 10px;
-  font-size: 15px;
+	width: 520px;
+	height: 50px;
+	border: none;
+	padding: 10px;
+	font-size: 15px;
 }
 .inputs > input:focus {
-  outline: none;
-  border: 1px solid black;
-  border-radius: 8px;
+	outline: none;
+	border: 1px solid black;
+	border-radius: 8px;
 }
 .credential {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  border-bottom: 1px solid rgb(190, 190, 190);
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom: 1px solid rgb(190, 190, 190);
 }
 
 .inputs > .password {
-  border-top: 1px solid rgb(190, 190, 190);
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+	border-top: 1px solid rgb(190, 190, 190);
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 }
 
 form button {
-  margin: 40px;
-  width: 520px;
-  height: 50px;
-  margin: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  color: white;
-  background-color: rgb(76, 63, 145);
+	margin: 40px;
+	width: 520px;
+	height: 50px;
+	margin: 10px;
+	border: none;
+	border-radius: 10px;
+	font-size: 16px;
+	color: white;
+	background-color: rgb(76, 63, 145);
 }
 
 .sign-up-link {
-  /* width: 100%; */
-  text-align: center;
-  padding: 5px 10px;
-  margin-top: -20px;
-  margin-bottom: 20px;
+	/* width: 100%; */
+	text-align: center;
+	padding: 5px 10px;
+	margin-top: -20px;
+	margin-bottom: 20px;
 }
 
 .sign-up-link > span {
-  color: #4c3f91;
-  font-weight: bold;
-  text-decoration: underline;
+	color: #4c3f91;
+	font-weight: bold;
+	text-decoration: underline;
 }
 
 .sign-up-link > span:hover {
-  cursor: pointer;
+	cursor: pointer;
 }

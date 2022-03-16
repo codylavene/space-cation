@@ -1,74 +1,74 @@
 .signup-modal {
-  height: fit-content;
-  width: 570px;
-  border-radius: 10px;
+	height: fit-content;
+	width: 570px;
+	border-radius: 10px;
 }
 .header {
-  height: 64px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #b7b5b3;
+	height: 64px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #b7b5b3;
 }
 
 .fa-times {
-  color: #ed474a;
-  margin: 26px;
-  font-size: 20px;
+	color: #ed474a;
+	margin: 26px;
+	font-size: 20px;
 }
 .fa-times:hover {
-  color: #a71113;
+	color: #a71113;
 }
 .header > span {
-  position: relative;
-  left: 35%;
-  font-weight: 700;
+	position: relative;
+	left: 35%;
+	font-weight: 700;
 }
 
 .signup-modal > form {
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 .signup-inputs {
-  border: 1px solid #b7b5b3;
-  border-radius: 8px;
-  margin-top: 20px;
-  margin-bottom: 40px;
+	border: 1px solid #b7b5b3;
+	border-radius: 8px;
+	margin-top: 20px;
+	margin-bottom: 40px;
 }
 .signup-inputs input {
-  width: 520px;
-  height: 50px;
-  border-width: 0;
-  border-bottom: 1px solid #b7b5b3;
-  padding: 10px;
-  font-size: 15px;
+	width: 520px;
+	height: 50px;
+	border-width: 0;
+	border-bottom: 1px solid #b7b5b3;
+	padding: 10px;
+	font-size: 15px;
 }
 .signup-inputs > input:focus {
-  outline: none;
-  border: 1px solid black;
-  border-radius: 8px;
+	outline: none;
+	border: 1px solid black;
+	border-radius: 8px;
 }
 .top-input {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  /* border-bottom: 1px solid rgb(190, 190, 190); */
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	/* border-bottom: 1px solid rgb(190, 190, 190); */
 }
 .bottom-input {
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border-bottom: none !important;
-  border-width: 0;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-bottom: none !important;
+	border-width: 0;
 }
 
 form button {
-  margin: 40px;
-  width: 520px;
-  height: 50px;
-  margin: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  color: white;
-  background-color: #453f78;
+	margin: 40px;
+	width: 520px;
+	height: 50px;
+	margin: 10px;
+	border: none;
+	border-radius: 10px;
+	font-size: 16px;
+	color: white;
+	background-color: #453f78;
 }

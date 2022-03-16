@@ -1,56 +1,56 @@
 .spot-card {
-  width: 800px;
-  height: 250px;
-  margin-left: 20px;
-  padding: 20px 0px;
-  border-bottom: 1px dotted #717171;
-  display: flex;
-  align-items: center;
-  font-weight: 300;
-  /* z-index: -100; */
+	width: 800px;
+	height: 250px;
+	margin-left: 20px;
+	padding: 20px 0px;
+	border-bottom: 1px dotted #717171;
+	display: flex;
+	align-items: center;
+	font-weight: 300;
+	/* z-index: -100; */
 }
 .spot-card > a {
-  display: flex;
-  flex-direction: row;
-  text-decoration: none;
+	display: flex;
+	flex-direction: row;
+	text-decoration: none;
 }
 .spot-card > a:hover {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .spot-card > a > img {
-  width: 300px;
-  /* min-width: 300px; */
-  height: 200px;
-  /* min-height: 200px; */
-  object-fit: cover;
-  border-radius: 15px;
+	width: 300px;
+	/* min-width: 300px; */
+	height: 200px;
+	/* min-height: 200px; */
+	object-fit: cover;
+	border-radius: 15px;
 }
 .info {
-  display: flex;
-  color: #222222;
-  flex-direction: column;
-  justify-content: space-around;
-  padding-left: 20px;
-  width: 490px;
+	display: flex;
+	color: #222222;
+	flex-direction: column;
+	justify-content: space-around;
+	padding-left: 20px;
+	width: 490px;
 }
 .type,
 .details {
-  font-size: 13px;
-  color: #717171;
+	font-size: 13px;
+	color: #717171;
 }
 
 .price {
-  display: flex;
-  align-self: end;
+	display: flex;
+	align-self: end;
 }
 .rating {
-  display: flex;
-  position: relative;
-  top: 35px;
+	display: flex;
+	position: relative;
+	top: 35px;
 }
 .name {
-  font-size: 22px;
-  font-weight: 400;
+	font-size: 22px;
+	font-weight: 400;
 }
 /*  */

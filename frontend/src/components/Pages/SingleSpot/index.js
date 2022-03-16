@@ -10,25 +10,25 @@ import Description from "./Description";
 import defaulImg from "../../../assets/default.jpg";
 
 const SingleSpot = (props) => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  const currSpot = useSelector((state) => state.spots.currSpot);
-  const { id } = useParams();
+	const currSpot = useSelector((state) => state.spots.currSpot);
+	const { id } = useParams();
 
-  useEffect(() => {
-    // dispatch(spotActions.getAllSpots());
-    dispatch(spotActions.getOneSpot(id));
-  }, [dispatch, id]);
+	useEffect(() => {
+		// dispatch(spotActions.getAllSpots());
+		dispatch(spotActions.getOneSpot(id));
+	}, [dispatch, id]);
 
-  // const spots = Object.values(spotsObj);
-  // const spot = spots.find((spot) => spot.id === id);
-  return (
-    <div>
-      <Heading spot={currSpot} />
-      <ImageTile images={currSpot?.Images} />
-      <Description spot={currSpot} />
-    </div>
-  );
+	// const spots = Object.values(spotsObj);
+	// const spot = spots.find((spot) => spot.id === id);
+	return (
+		<div>
+			<Heading spot={currSpot} />
+			<ImageTile images={currSpot?.Images} />
+			<Description spot={currSpot} />
+		</div>
+	);
 };
 
 export default SingleSpot;
