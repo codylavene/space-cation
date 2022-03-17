@@ -1,6 +1,6 @@
 .spot-image-container {
-	width: 300px;
-	height: 300px;
+	width: 550px;
+	height: 400px;
 	margin: 20px 20px;
 }
 .all-spot-images {
@@ -9,6 +9,8 @@
 	max-width: 100%;
 	overflow-x: scroll;
 	justify-content: center;
+	align-items: center;
+	padding: 10px;
 }
 .spot-image-container > img {
 	width: 100%;
@@ -16,15 +18,27 @@
 	object-fit: cover;
 	margin: 20px 20px;
 	border-radius: 10px;
+	box-shadow: 0 2px 12px 0 #242526;
 }
 
 .title-container {
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+	align-items: flex-start;
 	flex-direction: column;
+	margin-top: 40px;
+	padding: 20px 12%;
 }
-
+.title-container > h1 {
+	padding: 10px;
+	border-bottom: 1px solid gray;
+}
+.left-side {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+}
 .details-container {
 	display: flex;
 	flex-direction: column;
@@ -33,7 +47,9 @@
 
 	margin-top: 30px;
 }
-
+.single-spot {
+	display: flex;
+}
 .description {
 	max-width: 400px;
 	justify-self: start;

@@ -8,6 +8,7 @@ import Heading from "./Heading";
 import "./SingleSpot.css";
 import Description from "./Description";
 import defaulImg from "../../../assets/default.jpg";
+import ReserveCard from "./ReservationCard";
 
 const SingleSpot = (props) => {
 	const dispatch = useDispatch();
@@ -26,7 +27,14 @@ const SingleSpot = (props) => {
 		<div>
 			<Heading spot={currSpot} />
 			<ImageTile images={currSpot?.Images} />
-			<Description spot={currSpot} />
+			<div className="single-spot">
+				<div className="left-side">
+					<Description spot={currSpot} />
+				</div>
+				<div className="right-side">
+					<ReserveCard />
+				</div>
+			</div>
 		</div>
 	);
 };

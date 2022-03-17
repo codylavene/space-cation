@@ -4,7 +4,7 @@ const ImageTile = ({ images }) => {
 	return (
 		<div className="all-spot-images">
 			{images?.length > 0 &&
-				images.map((image) => (
+				images.slice(0, 2).map((image) => (
 					<div className="spot-image-container" key={image.id}>
 						<img alt={image.url} src={image?.url}></img>
 					</div>
