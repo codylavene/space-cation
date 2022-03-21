@@ -32,7 +32,7 @@ const SingleSpot = (props) => {
 					<Description spot={currSpot} />
 				</div>
 				<div className="right-side">
-					<ReserveCard />
+					<ReserveCard spot={currSpot} />
 				</div>
 			</div>
 		</div>

@@ -53,6 +53,11 @@ const ProfileButton = ({ user }) => {
 							</Link>
 						</div>
 						<div className="account-link">
+							<Link to={`/users/${user.id}/reservations`}>
+								Upcoming Trips
+							</Link>
+						</div>
+						<div className="account-link">
 							<Link to={`/users/${user.id}`}>Account</Link>
 						</div>
 						<div className="account-link">

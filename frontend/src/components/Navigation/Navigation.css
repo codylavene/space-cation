@@ -8,7 +8,7 @@
 	align-items: center;
 	justify-content: center;
 	background-color: #161712;
-	/* z-index: 300; */
+	z-index: 300;
 }
 
 nav {
@@ -22,7 +22,7 @@ nav {
 	min-width: 90%;
 	width: 90%;
 	background-color: #161712;
-	z-index: 10;
+	z-index: 1000;
 }
 .main-links {
 	display: flex;
