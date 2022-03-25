@@ -37,7 +37,7 @@ const deleteSpot = () => {
 /*--------------------------------------------------------------------*/
 // FETCH UTIL FUNCTIONS
 export const getAllSpots = () => async (dispatch) => {
-	const res = await csrfFetch("/api/spots");
+	const res = await csrfFetch("/api/spots/");
 	const data = await res.json();
 	dispatch(loadSpots(data));
 	// return res;
@@ -83,7 +83,7 @@ export const addNewSpot = (newSpot) => async (dispatch) => {
 	//   hostId,
 	// } = newSpot.spot;
 	const formData = formDataBuilder(newSpot);
-	const res = await csrfFetch(`/api/spots`, {
+	const res = await csrfFetch(`/api/spots/`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "multipart/form-data",
