@@ -11,6 +11,7 @@ import SingleSpot from "./components/Pages/SingleSpot";
 import Landing from "./components/Pages/Landing";
 import Account from "./components/Account";
 import SpotsByType from "./components/Pages/SpotsByType";
+import Reservations from "./components/Account/Reservations";
 
 function App() {
 	const dispatch = useDispatch();
@@ -36,8 +37,11 @@ function App() {
 					<Route path="/places">
 						<Spots isLoaded={isLoaded} />
 					</Route>
-					<Route path="/users/:id">
+					<Route exact path="/users/:id">
 						<Account isLoaded={isLoaded} />
+					</Route>
+					<Route path="/users/:id/reservations">
+						<Reservations isLoaded={isLoaded} />
 					</Route>
 				</Switch>
 			)}

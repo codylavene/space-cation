@@ -1,0 +1,80 @@
+.img-container {
+	width: 300px;
+	/* min-width: 300px; */
+	height: 200px;
+	/* min-height: 200px; */
+	object-fit: cover;
+	border-radius: 15px;
+	box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px !important;
+}
+.img-container > img {
+	width: 400px;
+
+	height: 250px;
+
+	object-fit: cover;
+	border-radius: 15px;
+	box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px !important;
+}
+div.reservation-container {
+	display: flex;
+	width: 80%;
+	max-width: 1300px;
+	min-width: 900px;
+	justify-content: space-between;
+	padding: 30px 20px;
+	border-bottom: 1px solid gray;
+}
+div.reservations-wrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+div.reservations-wrapper > h2 {
+	margin-top: 20px;
+	padding-bottom: 20px;
+	font-size: 2em;
+	border-bottom: 1px solid gray;
+	width: 80%;
+	min-width: 900px;
+	max-width: 1300px;
+}
+div.booking-dates {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin: 4px 0px;
+	font-size: 15px;
+}
+div.reservation-container > div.details-container {
+	width: 60%;
+	margin-left: 4%;
+	height: 250px;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: space-evenly;
+}
+div.details-container > div.heading {
+	display: flex;
+	width: 100%;
+	border-bottom: 1px solid gray;
+	padding-bottom: 10px;
+	justify-content: space-between;
+	align-items: center;
+}
+div.reservation-actions > span > i {
+	margin: 4px;
+}
+div.reservation-actions {
+	display: flex;
+}
+div.reservation-actions span {
+	margin: 4px;
+	font-size: 0.8em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+}
