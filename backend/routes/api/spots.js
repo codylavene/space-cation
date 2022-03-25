@@ -45,6 +45,39 @@ router.get(
 		return res.json(spots);
 	})
 );
+// RESERVE A SPOT
+router.post(
+	"/:id/bookings",
+	asyncHandler(async (req, res) => {
+		const id = req.params.id;
+		console.log(id);
+		console.log("<><><><><><>", req.body);
+		const {
+			checkIn,
+			checkOut,
+			userId,
+			hostId,
+			spotId,
+			price,
+			guestCount,
+			totalCost,
+		} = req.body;
+		const booking = {
+			checkIn,
+			checkOut,
+			userId,
+			hostId,
+			spotId,
+			price,
+			guestCount,
+			totalCost,
+		};
+		const reservation = await Reservation.create(booking);
+		if (reservation) {
+			return res.json({ reservation });
+		} else res.json({ message: "Something went wrong, please try again." });
+	})
+);
 // CREATE NEW SPOT
 router.post(
 	"/",
@@ -101,6 +134,52 @@ router.post(
 		} else {
 			return res.json({ message: "Failed" });
 		}
+	})
+);
+// DELETE BOOKING
+router.delete(
+	"/:spotId/bookings/:id",
+	asyncHandler(async (req, res) => {
+		const destroyed = Reservation.destroy({ where: { id: req.params.id } });
+		if (destroyed) {
+			return res.json({ message: "Destroyed", booking: req.params.id });
+		} else {
+			return res.json({ message: "Failed" });
+		}
+	})
+);
+// UPDATE BOOKING
+router.put(
+	"/:spotId/bookings/:id",
+	asyncHandler(async (req, res) => {
+		const id = req.params.id;
+		console.log("<><><><><><><><><><><><><><><>");
+		const {
+			checkIn,
+			checkOut,
+			userId,
+			hostId,
+			spotId,
+			price,
+			guestCount,
+			totalCost,
+		} = req.body;
+		const newRes = {
+			checkIn,
+			checkOut,
+			hostId,
+			userId,
+			spotId,
+			price,
+			totalCost,
+			guestCount,
+		};
+		const toUpdate = await Reservation.findByPk(id);
+		console.log("STEP222222");
+		const reservation = await toUpdate.update(newRes);
+		if (reservation) {
+			return res.json({ reservation });
+		} else res.json({ message: "Something went wrong, please try again." });
 	})
 );
 // UPDATE SPOT
@@ -181,4 +260,34 @@ router.get(
 		} else res.json({ message: "No spots of provided type" });
 	})
 );
+router.post(
+	"/:id/bookings",
+	asyncHandler(async (req, res) => {
+		const id = req.params.id;
+		const {
+			checkIn,
+			checkOut,
+			userId,
+			hostId,
+			spotId,
+			price,
+			guestCount,
+			totalCost,
+		} = req.body;
+		const reservation = await Reservation.create(
+			checkIn,
+			checkOut,
+			userId,
+			hostId,
+			spotId,
+			price,
+			guestCount,
+			totalCost
+		);
+		if (reservation) {
+			return res.json({ reservation });
+		} else res.json({ message: "Something went wrong, please try again." });
+	})
+);
+
 module.exports = router;

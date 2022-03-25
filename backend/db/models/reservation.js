@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 			checkOut: DataTypes.DATE,
 			price: DataTypes.INTEGER,
 			totalCost: DataTypes.INTEGER,
+			guestCount: DataTypes.INTEGER,
 		},
 		{}
 	);
