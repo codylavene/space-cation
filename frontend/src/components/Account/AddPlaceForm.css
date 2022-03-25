@@ -124,22 +124,27 @@ textarea {
 	margin-top: 10px;
 	margin-bottom: -90px;
 	background-color: #ed474a;
+	z-index: 0;
 	color: #161712;
 }
 .edit {
 	background-color: #453f78;
+	z-index: 0;
 }
 .edit:hover {
 	background-color: #3d386b;
+	cursor: pointer;
 }
 .delete:hover {
 	background-color: #eb3336;
+	cursor: pointer;
 }
 .action-btns {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	position: relative;
+	z-index: 0;
 	top: -150px;
 	right: -630px;
 }

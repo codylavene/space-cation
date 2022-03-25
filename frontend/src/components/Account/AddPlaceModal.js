@@ -9,7 +9,7 @@ const AddPlaceModal = () => {
 				className="add-spot-show-modal"
 				onClick={() => setShowModal(true)}
 			>
-				Add a Spot?
+				Add a Spot
 			</button>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>

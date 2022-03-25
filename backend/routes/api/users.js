@@ -69,6 +69,16 @@ router.put(
 );
 
 router.get(
+	"/:id/bookings",
+	asyncHandler(async (req, res) => {
+		const reservations = await Reservation.findAll({
+			where: { userId: req.params.id },
+			include: [{ model: Spot, include: [Image, Reservation] }],
+		});
+		return res.json(reservations);
+	})
+);
+router.get(
 	"/:id",
 	asyncHandler(async (req, res) => {
 		const spots = await Spot.findAll({

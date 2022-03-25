@@ -3,12 +3,13 @@
 	top: 0;
 	right: 0;
 	left: 0;
+	height: 90px;
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background-color: #161712;
-	/* z-index: 300; */
+	z-index: 99;
 }
 
 nav {
@@ -20,9 +21,10 @@ nav {
 	font-size: 16px;
 	max-width: 1800px;
 	min-width: 90%;
+	height: 90px;
 	width: 90%;
 	background-color: #161712;
-	z-index: 10;
+	z-index: 1000;
 }
 .main-links {
 	display: flex;

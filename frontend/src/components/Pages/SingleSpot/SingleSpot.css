@@ -1,40 +1,179 @@
 .spot-image-container {
-	width: 300px;
-	height: 300px;
-	margin: 20px 20px;
+	width: 550px;
+	height: 400px;
+	margin: 0 20px;
 }
 .all-spot-images {
 	display: flex;
 	flex-direction: row;
-	max-width: 100%;
-	overflow-x: scroll;
+	width: 100%;
+	/* overflow-x: scroll; */
 	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	margin: auto;
 }
 .spot-image-container > img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	margin: 20px 20px;
 	border-radius: 10px;
+	box-shadow: rgb(0 0 0 / 20%) 0px 4px 10px !important;
 }
 
 .title-container {
 	display: flex;
 	justify-content: center;
+	width: 100%;
 	align-items: center;
 	flex-direction: column;
-}
+	/* margin-top: 40px; */
 
+	padding: 20px;
+	padding-bottom: 0;
+}
+.title-container > h1 {
+	padding: 10px;
+	font-size: 24px;
+	width: 1150px;
+	text-align: left;
+}
+.single-spot {
+	display: flex;
+	justify-content: center;
+}
+.left-side,
+.right-side {
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+	/* width: 550px; */
+	margin: 30px 15px;
+}
+.left-side {
+	display: flex;
+	align-items: flex-end;
+}
+.right-side {
+	display: flex;
+	align-items: flex-start;
+}
 .details-container {
 	display: flex;
 	flex-direction: column;
+	padding: 20px;
 	/* justify-content: center; */
+	background-color: #fff;
+	box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px !important;
+	border-radius: 10px;
+	color: black;
 	align-items: center;
+	font-size: 19px;
+	width: fit-content;
 
-	margin-top: 30px;
+	/* margin-top: 30px; */
 }
-
+.details-container > .details {
+	font-size: inherit;
+	color: black;
+}
+.details-container > .details > .amenities {
+	display: flex;
+	justify-content: flex-start;
+}
+.details-container > .details > .amenities > i {
+	padding: 15px;
+	color: #717171;
+}
+/* .single-spot {
+	display: flex;
+	justify-content: space-evenly;
+} */
 .description {
 	max-width: 400px;
-	justify-self: start;
 }
+.reserve-container {
+	border-radius: 8px;
+	box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px !important;
+	height: fit-content;
+	width: fit-content;
+	max-width: 600px;
+	display: flex;
+	background-color: #fff;
+	justify-content: center;
+	align-items: center;
+	/* margin-top: 30px; */
+	padding: 20px;
+	font-size: 19px;
+}
+.reserve-container > div.user-actions > button {
+	background-color: transparent;
+	border: none;
+	text-decoration: underline;
+	font-size: 19px;
+}
+.reserve-container > div.user-actions > button:hover {
+	cursor: pointer;
+	font-weight: bold;
+}
+.reserve-container > div.reserve-card {
+	width: fit-content;
+	max-width: 500px;
+}
+.reserve-container > div.reserve-card > h3 > span {
+	font-size: 17px;
+}
+.reserve-container > div.reserve-card > form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: fit-content;
+	max-width: 450px;
+}
+.reserve-container > div.reserve-card > form > div.label {
+	width: 100%;
+	text-align: left;
+	font-size: 16px;
+	margin: 13px;
+}
+.reserve-container > div.reserve-card > form > .reserve-btn {
+	width: 80%;
+	height: 38px;
+	color: white;
+	background-color: #453f78;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 8px;
+}
+.reserve-container > div.reserve-card > form > .reserve-btn:hover {
+	cursor: pointer;
+}
+.reserve-container > div.reserve-card > form > .reserve-btn:disabled {
+	background-color: #453f78aa;
+	color: #ffffffaa;
+	pointer-events: none;
+}
+.reserve-container > div.reserve-card > form > input {
+	border-radius: 8px;
+	border: thin solid gray;
+	padding: 8px;
+	height: 40px;
+	width: 100%;
+}
+.rdrDayDisabled > span > span {
+	text-decoration: line-through !important;
+}
+.price-calc {
+	font-size: 15px;
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+.price-calc > div:first-child {
+	text-decoration: underline;
+}
+.calendar {
+	width: 100%;
+}
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--REACT DATE PICKER--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

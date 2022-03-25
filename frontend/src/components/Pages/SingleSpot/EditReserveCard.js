@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoginModal from "../../LoginModal";
 import SignupModal from "../../SignupModal";
-import { reserveSpot } from "../../../store/bookings";
+import {
+	editReservation,
+	getUserBookings,
+	reserveSpot,
+} from "../../../store/bookings";
 import { useHistory } from "react-router-dom";
 import { Collapse } from "react-collapse";
 /*--------------------------------------------------------------------*/
@@ -11,7 +15,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
 import { addDays, addWeeks, compareAsc, isSameDay, startOfDay } from "date-fns";
 /*--------------------------------------------------------------------*/
-const ReserveCard = ({ spot }) => {
+const EditReserveCard = ({ spot, dates, booking, setShowModal }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
@@ -19,7 +23,7 @@ const ReserveCard = ({ spot }) => {
 		const days = [];
 		for (
 			let date = new Date(startDate);
-			date <= endDate;
+			date <= new Date(endDate);
 			date.setDate(date.getDate() + 1)
 		) {
 			days.push(new Date(date));
@@ -29,29 +33,34 @@ const ReserveCard = ({ spot }) => {
 	const getBookedDates = (spot) => {
 		const disableDates = [];
 		spot?.Reservations?.forEach((reservation) => {
-			disableDates.push(
-				...getDaysArr(
-					new Date(reservation.checkIn),
-					new Date(reservation.checkOut)
-				)
-			);
+			// console.log(booking);
+			// console.log(reservation);
+			// console.log(booking.id === reservation.id);
+			if (booking.id !== reservation.id) {
+				disableDates.push(
+					...getDaysArr(
+						new Date(reservation.checkIn),
+						new Date(reservation.checkOut)
+					)
+				);
+			}
 		});
-		console.log(disableDates);
-		return disableDates.sort((a, b) => compareAsc(a, b));
+
+		// console.log(disableDates);
+		return disableDates;
 	};
 	getBookedDates(spot);
-
+	console.log(booking);
 	const [range, setRange] = useState([
 		{
-			startDate: startOfDay(new Date()),
-			endDate: startOfDay(new Date()),
+			startDate: startOfDay(new Date(booking.checkIn)),
+			endDate: startOfDay(new Date(booking.checkOut)),
 		},
 	]);
-	// const [isOpen, setIsOpen] = useState(false);
 	const [disabled, setDisabled] = useState(true);
 	const [startCalc, setStartCalc] = useState(null);
 	const [endCalc, setEndCalc] = useState(null);
-	const [guestCount, setGuestCount] = useState(1);
+	const [guestCount, setGuestCount] = useState(booking.guestCount);
 
 	const currUser = useSelector((state) => state.session.user);
 
@@ -70,32 +79,6 @@ const ReserveCard = ({ spot }) => {
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		const daysBetween = getDaysArr(
-			startOfDay(new Date(range[0].startDate)),
-			startOfDay(new Date(range[0].endDate))
-		);
-		const booked = getBookedDates(spot);
-		console.log(
-			getBookedDates(spot).some((date) =>
-				isSameDay(range[0].startDate, date)
-			)
-		);
-		console.log(
-			daysBetween.some((day1) =>
-				booked.filter((day2) => isSameDay(day1, day2))
-			)
-		);
-		if (
-			getBookedDates(spot).some((date) =>
-				isSameDay(range[0].startDate, date)
-			) ||
-			getBookedDates(spot).some((date) =>
-				isSameDay(range[0].endDate, date)
-			)
-		) {
-			console.log("HELLO");
-			return;
-		}
 		const body = {
 			checkIn: range[0].startDate,
 			checkOut: range[0].endDate,
@@ -109,9 +92,12 @@ const ReserveCard = ({ spot }) => {
 				((new Date(endCalc) - new Date(startCalc)) /
 					(1000 * 3600 * 24)),
 		};
-		const data = await dispatch(reserveSpot(spot.id, body));
+		const data = await dispatch(editReservation(booking.id, spot.id, body));
+		dispatch(getUserBookings(currUser.id));
 		console.log(data);
-		history.push(`/users/${currUser.id}/reservations`);
+		setTimeout(() => {
+			setShowModal(false);
+		}, 300);
 	};
 	return (
 		<div className="reserve-container">
@@ -123,6 +109,7 @@ const ReserveCard = ({ spot }) => {
 							currency: "USD",
 						}).format(spot?.price)} / `}
 						<span>night</span>
+						<span>{booking.id}</span>
 					</h3>
 					<form onSubmit={onSubmit}>
 						<DateRange
@@ -142,17 +129,10 @@ const ReserveCard = ({ spot }) => {
 							className="calendar"
 							rangeColors={["#453f78"]}
 							onChange={(e) => handleChange(e)}
-							// showPreview={true}
-							// preview={{
-							// 	startDate: new Date(range.startDate),
-							// 	endDate: new Date(range.endDate),
-							// 	color: "#ed474a",
-							// }}
 							months={1}
 							direction="vertical"
 							scroll={{ enabled: true, monthWidth: 350 }}
 							showMonthAndYearPickers={true}
-							initialFocusedRange={[0, 0]}
 						/>
 
 						{/* <div>Check-out</div> */}
@@ -216,4 +196,4 @@ const ReserveCard = ({ spot }) => {
 	);
 };
 
-export default ReserveCard;
+export default EditReserveCard;
